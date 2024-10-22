@@ -26,7 +26,7 @@ suspend fun <D, E> HttpClient.safeGet(
     tag: String,
     requestBlock: HttpRequestBuilder.() -> Unit = {},
     responseBlock: suspend (HttpResponse) -> Result<D, E>,
-    exceptionBlock: suspend (Exception) -> Result<D, E>
+    exceptionBlock: suspend (Exception) -> Result<D, E> = { exception -> Result.Exception(exception)}
 ): Result<D, E> {
     return try {
         println("SafeGet: $tag $urlString")
@@ -44,7 +44,7 @@ suspend fun <D, E> HttpClient.safePost(
     tag: String,
     requestBlock: HttpRequestBuilder.() -> Unit = {},
     responseBlock: suspend (HttpResponse) -> Result<D, E>,
-    exceptionBlock: suspend (Exception) -> Result<D, E>
+    exceptionBlock: suspend (Exception) -> Result<D, E> = { exception -> Result.Exception(exception)}
 ): Result<D, E> {
     return try {
         println("SafePost: $tag $urlString")
@@ -62,7 +62,7 @@ suspend fun <D, E> HttpClient.safeDelete(
     tag: String,
     requestBlock: HttpRequestBuilder.() -> Unit = {},
     responseBlock: suspend (HttpResponse) -> Result<D, E>,
-    exceptionBlock: suspend (Exception) -> Result<D, E>
+    exceptionBlock: suspend (Exception) -> Result<D, E> = { exception -> Result.Exception(exception)}
 ): Result<D, E> {
     return try {
         println("SafeDelete: $tag $urlString")
@@ -82,7 +82,7 @@ suspend fun <D, E> HttpClient.safeSubmitForm(
     encodeInQuery: Boolean = false,
     requestBlock: HttpRequestBuilder.() -> Unit = {},
     responseBlock: suspend (HttpResponse) -> Result<D, E>,
-    exceptionBlock: suspend (Exception) -> Result<D, E>
+    exceptionBlock: suspend (Exception) -> Result<D, E> = { exception -> Result.Exception(exception)}
 ): Result<D, E> {
     return try {
         println("SafeSubmitForm: $tag $url")
@@ -108,7 +108,7 @@ suspend fun <D, E> HttpClient.safeSubmitFormWithBinaryData(
     formData: List<PartData>,
     requestBlock: HttpRequestBuilder.() -> Unit = {},
     responseBlock: suspend (HttpResponse) -> Result<D, E>,
-    exceptionBlock: suspend (Exception) -> Result<D, E>
+    exceptionBlock: suspend (Exception) -> Result<D, E> = { exception -> Result.Exception(exception)}
 ): Result<D, E> {
     return try {
         println("SafeSubmitFormWithBinaryData: $tag $url")

@@ -1,20 +1,24 @@
 package com.fondstore.database.data
 
+import com.fondstore.auth.data.local.AuthTokensObject
+import com.fondstore.auth.data.mappers.toTokens
+import com.fondstore.auth.domain.models.AuthTokens
 import com.fondstore.launcher.data.local.LauncherObject
 import com.fondstore.launcher.data.mappers.toState
 import com.fondstore.launcher.domain.domain.LauncherState
 import io.realm.kotlin.Realm
 import io.realm.kotlin.RealmConfiguration
 import io.realm.kotlin.ext.query
+import io.realm.kotlin.notifications.ResultsChange
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 
 class RealmDatabase {
     private val realm by lazy {
         val config = RealmConfiguration.Builder(
             schema = setOf(
                 LauncherObject::class,
-//                AuthTokensObject::class,
-//                PinObject::class,
-//                PushNotificationsObject::class,
+                AuthTokensObject::class,
 //                ProfileObject::class,
 //                SettingsObject::class
             )
@@ -43,102 +47,42 @@ class RealmDatabase {
         }
     }
 
-//    fun getAuthTokens(): AuthTokens? {
-//        return realm.query<AuthTokensObject>().find().toTokens()
-//    }
-//
-//    fun getAuthTokensFlow(): Flow<AuthTokens?> {
-//        return realm.query<AuthTokensObject>().asFlow()
-//            .map(ResultsChange<AuthTokensObject>::toTokens)
-//    }
-//
-//    suspend fun upsertAuthTokens(tokens: AuthTokens) {
-//        realm.write {
-//            val currentTokenObject = query<AuthTokensObject>().find().firstOrNull()
-//
-//            if (currentTokenObject == null) {
-//                val tokensObject = AuthTokensObject().apply {
-//                    access = tokens.access
-//                    refresh = tokens.refresh
-//                    state = tokens.state.name
-//                }
-//
-//                copyToRealm(tokensObject)
-//            } else {
-//                currentTokenObject.access = tokens.access
-//                currentTokenObject.refresh = tokens.refresh
-//                currentTokenObject.state = tokens.state.name
-//            }
-//        }
-//    }
-//
-//    suspend fun deleteAuthTokens() {
-//        realm.write {
-//            query<AuthTokensObject>().find().forEach { authTokensObject ->
-//                delete(authTokensObject)
-//            }
-//        }
-//    }
-//
-//    fun getPinState(): PinState? {
-//        return realm.query<PinObject>().find().toState()
-//    }
-//
-//    fun getPinStateFlow(): Flow<PinState?> {
-//        return realm.query<PinObject>().asFlow().map(ResultsChange<PinObject>::toState)
-//    }
-//
-//    suspend fun upsertPinState(state: PinState) {
-//        realm.write {
-//            val currentPinObject = query<PinObject>().find().firstOrNull()
-//
-//            if (currentPinObject == null) {
-//                val pinObject = PinObject().apply {
-//                    isPinCreated = state.isPinCreated
-//                    pin = state.pin
-//                }
-//
-//                copyToRealm(pinObject)
-//            } else {
-//                currentPinObject.isPinCreated = state.isPinCreated
-//                currentPinObject.pin = state.pin
-//            }
-//        }
-//    }
-//
-//    suspend fun deletePin() {
-//        realm.write {
-//            query<PinObject>().find().forEach { pinObject ->
-//                delete(pinObject)
-//            }
-//        }
-//    }
-//
-//    fun getPushNotificationsState(): PushNotificationsState? {
-//        return realm.query<PushNotificationsObject>().find().toState()
-//    }
-//
-//    fun getPushNotificationsStateFlow(): Flow<PushNotificationsState?> {
-//        return realm.query<PushNotificationsObject>().asFlow()
-//            .map(ResultsChange<PushNotificationsObject>::toState)
-//    }
-//
-//    suspend fun upsertPushNotificationsState(state: PushNotificationsState) {
-//        realm.write {
-//            val currentPushNotificationsObject = query<PushNotificationsObject>().find().firstOrNull()
-//
-//            if (currentPushNotificationsObject == null) {
-//                val tokensObject = PushNotificationsObject().apply {
-//                    token = state.token
-//                }
-//
-//                copyToRealm(tokensObject)
-//            } else {
-//                currentPushNotificationsObject.token = state.token
-//            }
-//        }
-//    }
-//
+    fun getAuthTokens(): AuthTokens? {
+        return realm.query<AuthTokensObject>().find().toTokens()
+    }
+
+    fun getAuthTokensFlow(): Flow<AuthTokens?> {
+        return realm.query<AuthTokensObject>().asFlow()
+            .map(ResultsChange<AuthTokensObject>::toTokens)
+    }
+
+    suspend fun upsertAuthTokens(tokens: AuthTokens) {
+        realm.write {
+            val currentTokenObject = query<AuthTokensObject>().find().firstOrNull()
+
+            if (currentTokenObject == null) {
+                val tokensObject = AuthTokensObject().apply {
+                    access = tokens.access
+                    refresh = tokens.refresh
+                    state = tokens.state.name
+                }
+
+                copyToRealm(tokensObject)
+            } else {
+                currentTokenObject.access = tokens.access
+                currentTokenObject.refresh = tokens.refresh
+                currentTokenObject.state = tokens.state.name
+            }
+        }
+    }
+
+    suspend fun deleteAuthTokens() {
+        realm.write {
+            query<AuthTokensObject>().find().forEach { authTokensObject ->
+                delete(authTokensObject)
+            }
+        }
+    }
 //    fun getSettings(): Settings {
 //        return realm.query<SettingsObject>().find().toSettings()
 //    }

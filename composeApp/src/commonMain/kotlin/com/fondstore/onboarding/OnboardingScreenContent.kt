@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.pager.HorizontalPager
@@ -25,16 +24,19 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil3.compose.AsyncImage
 import com.fondstore.core.presentation.button
+import com.fondstore.core.presentation.screenHorizontalPadding
+import com.fondstore.image.presentation.DrawablePaths
 import com.fondstore.resources.presentation.fontFamilyResource
 import com.fondstore.ui.presentation.appColors
 import fondstore.composeapp.generated.resources.DMSans_Bold
@@ -44,11 +46,16 @@ import fondstore.composeapp.generated.resources.Res
 import fondstore.composeapp.generated.resources.next
 import fondstore.composeapp.generated.resources.shop_now
 import kotlinx.coroutines.launch
+import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
+@OptIn(ExperimentalResourceApi::class)
 @Composable
-fun OnboardingScreenContent(state: OnboardingScreenState, onEvent: (OnboardingScreenEvent) -> Unit) {
+fun OnboardingScreenContent(
+    state: OnboardingScreenState,
+    onEvent: (OnboardingScreenEvent) -> Unit
+) {
     Column(modifier = Modifier.fillMaxSize()) {
         val pagerState = rememberPagerState {
             state.pages.size
@@ -65,7 +72,7 @@ fun OnboardingScreenContent(state: OnboardingScreenState, onEvent: (OnboardingSc
                 Card(
                     modifier = Modifier.fillMaxWidth().height(481.dp),
                     shape = RoundedCornerShape(bottomStart = 75.dp, bottomEnd = 75.dp),
-                    colors = CardDefaults.imageCardColors()
+                    colors = CardDefaults.cardColors(containerColor = Color.Transparent)
                 ) {
                     Image(
                         painter = painterResource(page.image),
@@ -75,10 +82,10 @@ fun OnboardingScreenContent(state: OnboardingScreenState, onEvent: (OnboardingSc
                     )
                 }
 
-                Spacer(modifier = Modifier.height(30.dp))
+                Spacer(modifier = Modifier.height(36.dp))
 
                 Column(
-                    modifier = Modifier.fillMaxWidth().padding(10.dp),
+                    modifier = Modifier.fillMaxWidth().screenHorizontalPadding(),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Text(
@@ -89,7 +96,7 @@ fun OnboardingScreenContent(state: OnboardingScreenState, onEvent: (OnboardingSc
                         textAlign = TextAlign.Center
                     )
 
-                    Spacer(modifier = Modifier.height(10.dp))
+                    Spacer(modifier = Modifier.height(16.dp))
 
                     Text(
                         text = stringResource(page.text),
@@ -99,39 +106,38 @@ fun OnboardingScreenContent(state: OnboardingScreenState, onEvent: (OnboardingSc
                         textAlign = TextAlign.Center
                     )
                 }
+            }
+        }
 
-                Spacer(modifier = Modifier.height(20.dp))
+        Spacer(modifier = Modifier.height(21.dp))
 
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(
-                        space = 4.dp,
-                        alignment = Alignment.CenterHorizontally
-                    ),
-                    verticalAlignment = Alignment.CenterVertically
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(
+                space = 4.dp,
+                alignment = Alignment.CenterHorizontally
+            ),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            state.pages.forEachIndexed { index, _ ->
+                val isSelected = index == pagerState.currentPage
+                val containerColor = if (isSelected) {
+                    MaterialTheme.colorScheme.primary
+                } else {
+                    MaterialTheme.colorScheme.primary.copy(0.5f)
+                }
+
+                Card(
+                    modifier = Modifier.size(width = 15.dp, height = 4.dp),
+                    shape = RoundedCornerShape(6.dp),
+                    colors = CardDefaults.cardColors(containerColor = containerColor)
                 ) {
-                    state.pages.forEachIndexed { index, _ ->
-                        val isSelected = index == pagerState.currentPage
 
-                        Card(
-                            modifier = Modifier.width(15.dp).height(4.dp),
-                            shape = RoundedCornerShape(6.dp),
-                            colors = CardDefaults.cardColors(
-                                containerColor = if (isSelected) {
-                                    MaterialTheme.colorScheme.primary
-                                } else {
-                                    MaterialTheme.colorScheme.primary.copy(0.5f)
-                                }
-                            )
-                        ) {
-
-                        }
-                    }
                 }
             }
         }
 
-        Spacer(modifier = Modifier.height(20.dp))
+        Spacer(modifier = Modifier.height(21.dp))
 
         val isLastItem = pagerState.currentPage == state.pages.lastIndex
         val coroutineScope = rememberCoroutineScope()
@@ -142,18 +148,18 @@ fun OnboardingScreenContent(state: OnboardingScreenState, onEvent: (OnboardingSc
                     onEvent(OnboardingScreenEvent.Navigate(OnboardingScreenDestination.StoreScreen))
                 } else {
                     coroutineScope.launch {
-                        pagerState.scrollToPage(pagerState.currentPage.plus(pagerState.pageCount))
+                        pagerState.scrollToPage(pagerState.currentPage.plus(1))
                     }
                 }
             },
-            modifier = Modifier.button().padding(horizontal = 10.dp)
+            modifier = Modifier.button().screenHorizontalPadding()
         ) {
             val stringResource = if (isLastItem) Res.string.shop_now else Res.string.next
-
-            val icon = if (isLastItem) {
-                Icons.Filled.LocalMall
+            val iconPath = if (isLastItem) DrawablePaths.SHOP_NOW else DrawablePaths.NEXT
+            val iconModifier = if (isLastItem) {
+                Modifier.size(18.dp)
             } else {
-                Icons.AutoMirrored.Filled.ArrowForwardIos
+                Modifier.size(width = 15.dp, height = 18.dp)
             }
 
             Text(
@@ -162,18 +168,14 @@ fun OnboardingScreenContent(state: OnboardingScreenState, onEvent: (OnboardingSc
                 fontSize = 16.sp
             )
 
-            Spacer(modifier = Modifier.width(10.dp))
+            Spacer(modifier = Modifier.width(12.dp))
 
-            Icon(
-                imageVector = icon,
+            AsyncImage(
+                model = Res.getUri(iconPath),
                 contentDescription = stringResource(stringResource),
-                modifier = Modifier.size(18.dp)
+                modifier = iconModifier,
+                colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onPrimary)
             )
         }
     }
-}
-
-@Composable
-private fun CardDefaults.imageCardColors() : CardColors {
-    return cardColors(containerColor = Color.Transparent)
 }

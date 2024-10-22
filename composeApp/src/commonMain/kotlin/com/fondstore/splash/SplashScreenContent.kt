@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -27,12 +28,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil3.compose.AsyncImage
 import com.fondstore.core.presentation.button
 import com.fondstore.core.presentation.screenBackground
+import com.fondstore.core.presentation.screenHorizontalPadding
+import com.fondstore.image.presentation.DrawablePaths
 import com.fondstore.resources.presentation.fontFamilyResource
 import com.fondstore.ui.presentation.appColors
 import fondstore.composeapp.generated.resources.DMSans_Medium
@@ -49,9 +54,11 @@ import fondstore.composeapp.generated.resources.splash_screen_image_5
 import fondstore.composeapp.generated.resources.splash_screen_image_6
 import fondstore.composeapp.generated.resources.welcome_to_fondstore
 import org.jetbrains.compose.resources.DrawableResource
+import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
+@OptIn(ExperimentalResourceApi::class)
 @Composable
 fun SplashScreenContent(onEvent: (SplashScreenEvent) -> Unit) {
     BoxWithConstraints(modifier = Modifier.fillMaxSize().screenBackground()) {
@@ -67,8 +74,8 @@ fun SplashScreenContent(onEvent: (SplashScreenEvent) -> Unit) {
             val itemWidth = this@BoxWithConstraints.maxWidth.div(2)
 
             Column(
-                modifier = Modifier.horizontalScroll(state = scrollState, enabled = false),
-                verticalArrangement = Arrangement.spacedBy(10.dp)
+                modifier = Modifier.horizontalScroll(state = scrollState, enabled = false).offset(y = (-48).dp),
+                verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 ImageCardRow(
                     resources = listOf(
@@ -91,10 +98,8 @@ fun SplashScreenContent(onEvent: (SplashScreenEvent) -> Unit) {
                 )
             }
 
-            Spacer(modifier = Modifier.height(40.dp))
-
             Column(
-                modifier = Modifier.fillMaxWidth().padding(horizontal = 10.dp),
+                modifier = Modifier.fillMaxWidth().screenHorizontalPadding(),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
             ) {
@@ -130,12 +135,13 @@ fun SplashScreenContent(onEvent: (SplashScreenEvent) -> Unit) {
                         fontSize = 16.sp
                     )
 
-                    Spacer(modifier = Modifier.width(10.dp))
+                    Spacer(modifier = Modifier.width(12.dp))
 
-                    Icon(
-                        imageVector = Icons.AutoMirrored.Filled.ArrowForwardIos,
+                    AsyncImage(
+                        model = Res.getUri(DrawablePaths.GET_STARTED),
                         contentDescription = stringResource(Res.string.get_started),
-                        modifier = Modifier.size(18.dp)
+                        modifier = Modifier.size(width = 15.dp, height = 18.dp),
+                        colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onPrimary)
                     )
                 }
             }
@@ -151,7 +157,7 @@ private fun ImageCardRow(
 ) {
     Row(
         modifier = modifier,
-        horizontalArrangement = Arrangement.spacedBy(5.dp),
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
         resources.forEach { resource ->

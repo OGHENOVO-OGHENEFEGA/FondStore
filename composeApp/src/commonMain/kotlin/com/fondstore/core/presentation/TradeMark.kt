@@ -33,11 +33,12 @@ import org.jetbrains.compose.resources.stringResource
 @Composable
 fun TradeMark(
     iconSize: Dp = 24.dp,
+    horizontalArrangement: Arrangement.Horizontal = Arrangement.spacedBy(10.dp),
     mainFont: FontResource = Res.font.DMSans_ExtraBold,
     textSize: TextUnit = 24.sp
 ) {
     Row(
-        horizontalArrangement = Arrangement.spacedBy(10.dp),
+        horizontalArrangement = horizontalArrangement,
         verticalAlignment = Alignment.CenterVertically
     ) {
         Image(

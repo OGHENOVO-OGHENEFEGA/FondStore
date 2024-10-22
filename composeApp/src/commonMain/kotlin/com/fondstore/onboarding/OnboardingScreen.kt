@@ -5,7 +5,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.koin.koinScreenModel
-import com.fondstore.store.StoreScreen
+import com.fondstore.store.presentation.StoreScreen
 import com.fondstore.voyager.presentation.replace
 
 class OnboardingScreen : Screen {

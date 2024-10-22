@@ -2,8 +2,11 @@ package com.fondstore.di
 
 import com.fondstore.app.AppScreenModel
 import com.fondstore.launcher.presentation.LauncherScreenModel
+import com.fondstore.notification.presentation.NotificationsScreenModel
 import com.fondstore.onboarding.OnboardingScreenModel
+import com.fondstore.search.presentation.SearchScreenModel
 import com.fondstore.splash.SplashScreenModel
+import com.fondstore.store.presentation.StoreScreenModel
 import org.koin.core.module.dsl.factoryOf
 import org.koin.dsl.module
 
@@ -12,4 +15,7 @@ val screenModelModule = module {
     factoryOf(::LauncherScreenModel)
     factoryOf(::SplashScreenModel)
     factoryOf(::OnboardingScreenModel)
+    factoryOf(::StoreScreenModel)
+    factoryOf(::SearchScreenModel)
+    factoryOf(::NotificationsScreenModel)
 }
