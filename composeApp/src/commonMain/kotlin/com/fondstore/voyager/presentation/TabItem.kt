@@ -1,23 +1,26 @@
 package com.fondstore.voyager.presentation
 
 import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.NavigationBarItemDefaults
-import androidx.compose.material3.NavigationRailItem
-import androidx.compose.material3.NavigationRailItemDefaults
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.sp
+import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.navigator.tab.LocalTabNavigator
 import cafe.adriel.voyager.navigator.tab.Tab
-import com.fondstore.resources.presentation.fontFamilyResource
+import coil3.compose.AsyncImage
+import com.fondstore.account.AccountScreenTab
+import com.fondstore.image.presentation.DrawablePaths
 import com.fondstore.ui.presentation.appColors
-import fondstore.composeapp.generated.resources.DMSans_SemiBold
 import fondstore.composeapp.generated.resources.Res
+import org.jetbrains.compose.resources.ExperimentalResourceApi
 
+@OptIn(ExperimentalResourceApi::class)
 @Composable
 fun RowScope.NavigationBarTabItem(tab: Tab) {
     val navigator = LocalTabNavigator.current
@@ -34,16 +37,24 @@ fun RowScope.NavigationBarTabItem(tab: Tab) {
             navigator.current = tab
         },
         icon = {
-            tabImage(tab = tab, tint = color)
-        },
-        label = {
-            Text(
-                text = tab.options.title,
-                color = color,
-                fontSize = 11.sp,
-                fontFamily = fontFamilyResource(Res.font.DMSans_SemiBold),
-                textAlign = TextAlign.Center
-            )
+            val path = when (tab) {
+//        HomeScreenTab -> DrawablePaths.HOME
+//        PaymentScreenTab -> DrawablePaths.PAYMENT
+//        WalletScreenTab -> DrawablePaths.WALLET
+//        VirtualCardsScreenTab -> DrawablePaths.CARDS
+                AccountScreenTab -> DrawablePaths.PROFILE
+                else -> ""
+            }
+
+            if (path.isNotBlank()) {
+                AsyncImage(
+                    model = Res.getUri(path),
+                    contentDescription = tab.options.title,
+                    modifier = Modifier.size(24.dp),
+                    contentScale = ContentScale.Crop,
+                    colorFilter = ColorFilter.tint(color)
+                )
+            }
         },
         colors = NavigationBarItemDefaults.colors(
             selectedIconColor = MaterialTheme.colorScheme.primary,
@@ -53,63 +64,4 @@ fun RowScope.NavigationBarTabItem(tab: Tab) {
             unselectedTextColor = MaterialTheme.appColors.color50
         )
     )
-}
-
-@Composable
-fun NavigationRailTabItem(tab: Tab) {
-    val navigator = LocalTabNavigator.current
-
-    val isTabSelected = navigator.current == tab
-
-    val selectedColor = MaterialTheme.colorScheme.primary
-    val unSelectedColor = MaterialTheme.appColors.color50
-    val color = if (isTabSelected) selectedColor else unSelectedColor
-
-    NavigationRailItem(
-        selected = isTabSelected,
-        onClick = {
-            navigator.current = tab
-        },
-        icon = {
-            tabImage(tab = tab, tint = color)
-        },
-        label = {
-            Text(
-                text = tab.options.title,
-                color = color,
-                fontSize = 11.sp,
-                fontFamily = fontFamilyResource(Res.font.DMSans_SemiBold),
-                textAlign = TextAlign.Center
-            )
-        },
-        colors = NavigationRailItemDefaults.colors(
-            selectedIconColor = MaterialTheme.colorScheme.primary,
-            selectedTextColor = MaterialTheme.colorScheme.primary,
-            indicatorColor = Color.Transparent,
-            unselectedIconColor = MaterialTheme.appColors.color50,
-            unselectedTextColor = MaterialTheme.appColors.color50
-        )
-    )
-}
-
-@Composable
-fun tabImage(tab: Tab, tint: Color) {
-//    val path = when (tab) {
-//        HomeScreenTab -> DrawablePaths.HOME
-//        PaymentScreenTab -> DrawablePaths.PAYMENT
-//        WalletScreenTab -> DrawablePaths.WALLET
-//        VirtualCardsScreenTab -> DrawablePaths.CARDS
-//        ProfileScreenTab -> DrawablePaths.PROFILE
-//        else -> ""
-//    }
-//
-//    if (path.isNotBlank()) {
-//        AsyncImage(
-//            model = Res.getUri(path),
-//            contentDescription = tab.options.title,
-//            modifier = Modifier.size(24.dp),
-//            contentScale = ContentScale.Crop,
-//            colorFilter = ColorFilter.tint(tint)
-//        )
-//    }
 }

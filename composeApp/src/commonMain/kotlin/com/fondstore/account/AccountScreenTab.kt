@@ -7,7 +7,7 @@ import fondstore.composeapp.generated.resources.Res
 import fondstore.composeapp.generated.resources.account
 import org.jetbrains.compose.resources.stringResource
 
-class AccountScreenTab : Tab {
+object AccountScreenTab : Tab {
 
     override val options: TabOptions
         @Composable get()  {
