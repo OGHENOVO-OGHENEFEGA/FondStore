@@ -14,6 +14,8 @@ import com.fondstore.product.data.repositories.KtorProductRepository
 import com.fondstore.product.domain.repositories.ProductRepository
 import com.fondstore.profile.data.repositories.KtorProfileRepository
 import com.fondstore.profile.domain.repositories.ProfileRepository
+import com.fondstore.termsAndConditions.data.repositories.KtorTermsAndConditionRepository
+import com.fondstore.termsAndConditions.domain.repositories.TermsAndConditionRepository
 import org.koin.dsl.module
 
 val repositoryModule = module {
@@ -43,5 +45,9 @@ val repositoryModule = module {
 
     factory<PrivacyPolicyRepository> {
         KtorPrivacyPolicyRepository(get())
+    }
+
+    factory<TermsAndConditionRepository> {
+        KtorTermsAndConditionRepository(get())
     }
 }

@@ -10,6 +10,7 @@ import com.fondstore.privacyPolicy.presentation.PrivacyPolicyScreenModel
 import com.fondstore.search.presentation.SearchScreenModel
 import com.fondstore.splash.SplashScreenModel
 import com.fondstore.store.presentation.StoreScreenModel
+import com.fondstore.termsAndConditions.presentation.TermsAndConditionScreenModel
 import org.koin.core.module.dsl.factoryOf
 import org.koin.dsl.module
 
@@ -24,4 +25,5 @@ val screenModelModule = module {
     factoryOf(::HelpCenterScreenModel)
     factoryOf(::FaqsScreenModel)
     factoryOf(::PrivacyPolicyScreenModel)
+    factoryOf(::TermsAndConditionScreenModel)
 }

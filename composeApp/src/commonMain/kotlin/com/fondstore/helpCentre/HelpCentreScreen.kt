@@ -9,6 +9,7 @@ import cafe.adriel.voyager.navigator.LocalNavigator
 import com.fondstore.faqs.presentation.FaqsScreen
 import com.fondstore.privacyPolicy.presentation.PrivacyPolicyScreen
 import com.fondstore.store.presentation.StoreScreen
+import com.fondstore.termsAndConditions.presentation.TermsAndConditionScreen
 import com.fondstore.voyager.presentation.NavigationKey
 import com.fondstore.voyager.presentation.push
 
@@ -25,9 +26,9 @@ class HelpCentreScreen : Screen {
             val screen = when (destination) {
                 HelpCentreScreenDestination.FaqsScreen -> FaqsScreen()
                 HelpCentreScreenDestination.PrivacyPolicyScreen -> PrivacyPolicyScreen()
-                HelpCentreScreenDestination.ContactUsScreen -> TODO()
+                HelpCentreScreenDestination.TermsAndConditionScreen -> TermsAndConditionScreen()
                 HelpCentreScreenDestination.ReturnAndExchangePolicyScreen -> TODO()
-                HelpCentreScreenDestination.TermsAndConditionScreen -> TODO()
+                HelpCentreScreenDestination.ContactUsScreen -> TODO()
             }
 
             push(
