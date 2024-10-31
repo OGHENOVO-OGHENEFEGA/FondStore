@@ -1,6 +1,7 @@
 package com.fondstore.helpCentre
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -43,10 +44,10 @@ import org.jetbrains.compose.resources.stringResource
 @Composable
 fun HelpCentreScreenContent(onEvent: (HelpCentreScreenEvent) -> Unit) {
     Column(
-        modifier = Modifier.fillMaxSize()
-            .verticalScroll(rememberScrollState())
-            .padding(start = 10.dp, top = 20.dp, end = 10.dp, bottom = 10.dp)
+        modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(10.dp)
     ) {
+        Spacer(modifier = Modifier.height(28.dp))
+
         Text(
             text = stringResource(Res.string.tell_us_how_we_can_help),
             color = MaterialTheme.appColors.color100,
@@ -54,7 +55,7 @@ fun HelpCentreScreenContent(onEvent: (HelpCentreScreenEvent) -> Unit) {
             fontSize = 18.sp
         )
 
-        Spacer(modifier = Modifier.height(20.dp))
+        Spacer(modifier = Modifier.height(10.dp))
 
         Text(
             text = stringResource(Res.string.our_crew_are_standing_by),
@@ -63,18 +64,17 @@ fun HelpCentreScreenContent(onEvent: (HelpCentreScreenEvent) -> Unit) {
             fontSize = 14.sp
         )
 
-        Spacer(modifier = Modifier.height(40.dp))
+        Spacer(modifier = Modifier.height(48.dp))
 
         Card(
             modifier = Modifier.fillMaxWidth(),
             border = BorderStroke(1.dp, MaterialTheme.appColors.color30),
-            colors = CardDefaults.cardColors(containerColor = MaterialTheme.appColors.inverseColor100),
+            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.onPrimary),
             shape = RoundedCornerShape(15.dp)
         ) {
             Column(
-                modifier = Modifier.fillMaxWidth()
-                    .padding(20.dp),
-                verticalArrangement = Arrangement.spacedBy(50.dp)
+                modifier = Modifier.fillMaxWidth().padding(20.dp),
+                verticalArrangement = Arrangement.spacedBy(36.dp)
             ) {
                 HelpCentreOptionBox(name = stringResource(Res.string.faqs)) {
                     onEvent(HelpCentreScreenEvent.Navigate(HelpCentreScreenDestination.FaqsScreen))
@@ -110,28 +110,23 @@ fun HelpCentreScreenContent(onEvent: (HelpCentreScreenEvent) -> Unit) {
 
 @Composable
 private fun HelpCentreOptionBox(name: String, onAction: () -> Unit) {
-    Column(
-        modifier = Modifier.fillMaxWidth(),
-        verticalArrangement = Arrangement.spacedBy(10.dp)
+    Row(
+        modifier = Modifier.fillMaxWidth().defaultClickable(onClick = onAction),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
     ) {
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Text(
-                text = name,
-                color = MaterialTheme.appColors.color100,
-                fontFamily = fontFamilyResource(Res.font.DMSans_Medium),
-                fontSize = 18.sp
-            )
+        Text(
+            text = name,
+            color = MaterialTheme.appColors.color100,
+            fontFamily = fontFamilyResource(Res.font.DMSans_Medium),
+            fontSize = 18.sp
+        )
 
-            Icon(
-                imageVector = Icons.Outlined.ArrowDropDownCircle,
-                contentDescription = name,
-                tint = MaterialTheme.appColors.color50,
-                modifier = Modifier.rotate(-90f).defaultClickable(onClick = onAction)
-            )
-        }
+        Icon(
+            imageVector = Icons.Outlined.ArrowDropDownCircle,
+            contentDescription = name,
+            tint = MaterialTheme.appColors.color50,
+            modifier = Modifier.rotate(-90f)
+        )
     }
 }

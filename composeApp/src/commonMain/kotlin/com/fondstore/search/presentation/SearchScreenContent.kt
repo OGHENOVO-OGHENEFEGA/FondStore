@@ -49,7 +49,6 @@ fun SearchScreenContent(
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         topBar = {
-
             BackNavTopAppBar(
                 onNavigateBack = {
                     onEvent(SearchScreenEvent.CloseScreen)

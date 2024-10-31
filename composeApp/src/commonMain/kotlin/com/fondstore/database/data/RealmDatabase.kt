@@ -6,6 +6,9 @@ import com.fondstore.auth.domain.models.AuthTokens
 import com.fondstore.launcher.data.local.LauncherObject
 import com.fondstore.launcher.data.mappers.toState
 import com.fondstore.launcher.domain.domain.LauncherState
+import com.fondstore.profile.data.local.ProfileObject
+import com.fondstore.profile.data.mappers.toProfile
+import com.fondstore.profile.domain.models.Profile
 import io.realm.kotlin.Realm
 import io.realm.kotlin.RealmConfiguration
 import io.realm.kotlin.ext.query
@@ -19,8 +22,7 @@ class RealmDatabase {
             schema = setOf(
                 LauncherObject::class,
                 AuthTokensObject::class,
-//                ProfileObject::class,
-//                SettingsObject::class
+                ProfileObject::class
             )
         ).deleteRealmIfMigrationNeeded().build()
 
@@ -83,55 +85,45 @@ class RealmDatabase {
             }
         }
     }
-//    fun getSettings(): Settings {
-//        return realm.query<SettingsObject>().find().toSettings()
-//    }
-//
-//    fun getSettingsFlow(): Flow<Settings> {
-//        return realm.query<SettingsObject>().asFlow().map(ResultsChange<SettingsObject>::toSettings)
-//    }
-//
-//    suspend fun upsertSettings(settings: Settings) {
-//        realm.write {
-//            val currentSettingsObject = query<SettingsObject>().find().firstOrNull()
-//
-//            if (currentSettingsObject == null) {
-//                val settingsObject = SettingsObject().apply {
-//                    isBalanceVisible = settings.isBalanceVisible
-//                    isAutoLogoutEnabled = settings.isAutoLogoutEnabled
-//                    autoLogoutDuration = settings.autoLogoutDuration?.name
-//                    isDeviceSecurityEnabled = settings.isDeviceSecurityEnabled
-//                    deviceSecurityTiming = settings.deviceSecurityTiming?.name
-//                }
-//
-//                copyToRealm(settingsObject)
-//            } else {
-//                currentSettingsObject.isBalanceVisible = settings.isBalanceVisible
-//                currentSettingsObject.isAutoLogoutEnabled = settings.isAutoLogoutEnabled
-//                currentSettingsObject.autoLogoutDuration = settings.autoLogoutDuration?.name
-//                currentSettingsObject.isDeviceSecurityEnabled = settings.isDeviceSecurityEnabled
-//                currentSettingsObject.deviceSecurityTiming = settings.deviceSecurityTiming?.name
-//            }
-//        }
-//    }
-//
-//    fun getEmail(): String? {
-//        return realm.query<ProfileObject>().find().firstOrNull()?.email
-//    }
-//
-//    suspend fun setEmail(email: String) {
-//        realm.write {
-//            val currentProfileObject = query<ProfileObject>().find().firstOrNull()
-//
-//            if (currentProfileObject == null) {
-//                val profileObject = ProfileObject().apply {
-//                    this.email = email
-//                }
-//
-//                copyToRealm(profileObject)
-//            } else {
-//                currentProfileObject.email = email
-//            }
-//        }
-//    }
+
+    fun getProfileFlow(): Flow<Profile?> {
+        return realm.query<ProfileObject>().asFlow()
+            .map(ResultsChange<ProfileObject>::toProfile)
+    }
+
+    suspend fun upsertProfile(profile: Profile) {
+        realm.write {
+            val currentProfileObject = query<ProfileObject>().find().firstOrNull()
+
+            if (currentProfileObject == null) {
+                val profileObject = ProfileObject().apply {
+                    id = profile.id
+                    image = profile.image
+                    username = profile.username
+                    email = profile.email
+                    firstname = profile.firstname
+                    lastname = profile.lastname
+                    phoneNumber = profile.phoneNumber
+                }
+
+                copyToRealm(profileObject)
+            } else {
+                currentProfileObject.id = profile.id
+                currentProfileObject.image = profile.image
+                currentProfileObject.username = profile.username
+                currentProfileObject.email = profile.email
+                currentProfileObject.firstname = profile.firstname
+                currentProfileObject.lastname = profile.lastname
+                currentProfileObject.phoneNumber = profile.phoneNumber
+            }
+        }
+    }
+
+    suspend fun deleteProfile() {
+        realm.write {
+            query<ProfileObject>().find().forEach { profileObject ->
+                delete(profileObject)
+            }
+        }
+    }
 }

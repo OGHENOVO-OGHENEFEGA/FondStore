@@ -1,17 +1,17 @@
-package com.fondstore.notification.data.remote.responses
+package com.fondstore.faqs.data.remote.responses
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-sealed interface NotificationResponse {
+sealed interface FaqResponse {
     @Serializable
     data class Success(
-        @SerialName("attended_to")
-        val attendedTo: Boolean = false,
-        @SerialName("notice")
-        val notice: String = "",
-    ) : NotificationResponse
+        @SerialName("answer")
+        val answer: String = "",
+        @SerialName("question")
+        val question: String = ""
+    ) : FaqResponse
 
     @Serializable
     data class Error(
@@ -19,5 +19,5 @@ sealed interface NotificationResponse {
         val detail: String = "",
         @SerialName("error")
         val error: String = "",
-    ) : NotificationResponse
+    ) : FaqResponse
 }

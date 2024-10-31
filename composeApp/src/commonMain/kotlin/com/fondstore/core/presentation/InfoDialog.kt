@@ -49,7 +49,7 @@ fun InfoDialog(
         Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
             Card(
                 modifier = Modifier.fillMaxWidth(),
-                colors = CardDefaults.cardColors(containerColor = MaterialTheme.appColors.inverseColor100)
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.onPrimary)
             ) {
                 Column(
                     modifier = Modifier.fillMaxWidth().padding(20.dp),

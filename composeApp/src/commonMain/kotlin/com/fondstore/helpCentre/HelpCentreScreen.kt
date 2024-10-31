@@ -5,6 +5,11 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.koin.koinScreenModel
+import cafe.adriel.voyager.navigator.LocalNavigator
+import com.fondstore.faqs.presentation.FaqsScreen
+import com.fondstore.store.presentation.StoreScreen
+import com.fondstore.voyager.presentation.NavigationKey
+import com.fondstore.voyager.presentation.push
 
 class HelpCentreScreen : Screen {
 
@@ -16,7 +21,22 @@ class HelpCentreScreen : Screen {
         val destination = state.destination
 
         if (destination != null) {
+            val screen = when (destination) {
+                HelpCentreScreenDestination.FaqsScreen -> FaqsScreen()
+                HelpCentreScreenDestination.ContactUsScreen -> TODO()
+                HelpCentreScreenDestination.PrivacyPolicyScreen -> TODO()
+                HelpCentreScreenDestination.ReturnAndExchangePolicyScreen -> TODO()
+                HelpCentreScreenDestination.TermsAndConditionScreen -> TODO()
+            }
 
+            push(
+                screen = screen,
+                navigator = LocalNavigator.current?.parent?.parent,
+                navigationKey = NavigationKey.Klass(StoreScreen::class),
+                onNavigation = {
+                    screenModel.onEvent(HelpCentreScreenEvent.ClearDestination)
+                }
+            )
         }
 
         HelpCentreScreenContent(onEvent = screenModel::onEvent)
