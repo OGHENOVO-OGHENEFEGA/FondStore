@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class FaqsScreenScreenModel(private val repository: FaqsRepository) :
+class FaqsScreenModel(private val repository: FaqsRepository) :
     StateScreenModel<FaqsScreenState>(FaqsScreenState()) {
     init {
         getFaqs()

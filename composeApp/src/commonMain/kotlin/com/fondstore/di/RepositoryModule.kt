@@ -8,6 +8,8 @@ import com.fondstore.launcher.data.repositories.RealmLauncherRepository
 import com.fondstore.launcher.domain.repositories.LauncherRepository
 import com.fondstore.notification.data.repositories.KtorNotificationRepository
 import com.fondstore.notification.domain.repositories.NotificationRepository
+import com.fondstore.privacyPolicy.data.repositories.KtorPrivacyPolicyRepository
+import com.fondstore.privacyPolicy.domain.repositories.PrivacyPolicyRepository
 import com.fondstore.product.data.repositories.KtorProductRepository
 import com.fondstore.product.domain.repositories.ProductRepository
 import com.fondstore.profile.data.repositories.KtorProfileRepository
@@ -37,5 +39,9 @@ val repositoryModule = module {
 
     factory<FaqsRepository> {
         KtorFaqsRepository(get())
+    }
+
+    factory<PrivacyPolicyRepository> {
+        KtorPrivacyPolicyRepository(get())
     }
 }

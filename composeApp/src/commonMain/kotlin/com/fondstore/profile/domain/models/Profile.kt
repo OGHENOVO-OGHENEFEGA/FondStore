@@ -1,4 +1,4 @@
-package profile.domain.models
+package com.fondstore.profile.domain.models
 
 data class Profile(
     val id: Int = -1,

@@ -1,4 +1,4 @@
-package com.fondstore.faqs.presentation
+package com.fondstore.privacyPolicy.presentation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -7,17 +7,17 @@ import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.koin.koinScreenModel
 import com.fondstore.voyager.presentation.pop
 
-class FaqsScreen : Screen {
+class PrivacyPolicyScreen : Screen {
 
     @Composable
     override fun Content() {
-        val screenModel = koinScreenModel<FaqsScreenModel>()
+        val screenModel = koinScreenModel<PrivacyPolicyScreenModel>()
         val state by screenModel.state.collectAsState()
 
         if (!state.isActive) {
             pop()
         }
 
-        FaqsScreenContent(state = state, onEvent = screenModel::onEvent)
+        PrivacyPolicyScreenContent(state = state, onEvent = screenModel::onEvent)
     }
 }

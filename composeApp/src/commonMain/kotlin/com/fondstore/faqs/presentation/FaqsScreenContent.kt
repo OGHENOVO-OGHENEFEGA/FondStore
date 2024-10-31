@@ -40,6 +40,7 @@ import dev.materii.pullrefresh.rememberPullRefreshState
 import fondstore.composeapp.generated.resources.DMSans_Medium
 import fondstore.composeapp.generated.resources.DMSans_Regular
 import fondstore.composeapp.generated.resources.Res
+import fondstore.composeapp.generated.resources.faqs
 import fondstore.composeapp.generated.resources.hide_question
 import fondstore.composeapp.generated.resources.no_faqs
 import fondstore.composeapp.generated.resources.notifications
@@ -58,7 +59,7 @@ fun FaqsScreenContent(state: FaqsScreenState, onEvent: (FaqsScreenEvent) -> Unit
                 actions = {
                     Icon(
                         imageVector = Icons.AutoMirrored.Outlined.HelpOutline,
-                        contentDescription = stringResource(Res.string.notifications),
+                        contentDescription = stringResource(Res.string.faqs),
                         tint = MaterialTheme.appColors.color100
                     )
                 }
