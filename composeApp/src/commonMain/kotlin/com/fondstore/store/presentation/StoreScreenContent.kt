@@ -18,6 +18,7 @@ import coil3.compose.AsyncImage
 import com.fondstore.account.AccountScreenTab
 import com.fondstore.core.presentation.TopAppBar
 import com.fondstore.core.presentation.screenBackground
+import com.fondstore.home.HomeScreenTab
 import com.fondstore.image.presentation.DrawablePaths
 import com.fondstore.ui.presentation.appColors
 import com.fondstore.voyager.presentation.NavigationBarTabItem
@@ -30,7 +31,7 @@ import org.jetbrains.compose.resources.stringResource
 @OptIn(ExperimentalResourceApi::class)
 @Composable
 fun StoreScreenContent(onEvent: (StoreScreenEvent) -> Unit) {
-    TabNavigator(AccountScreenTab) {
+    TabNavigator(HomeScreenTab) {
         Scaffold(
             modifier = Modifier.fillMaxSize(),
             topBar = {
@@ -66,6 +67,7 @@ fun StoreScreenContent(onEvent: (StoreScreenEvent) -> Unit) {
             },
             bottomBar = {
                 NavigationBar(containerColor = MaterialTheme.colorScheme.onPrimary) {
+                    NavigationBarTabItem(HomeScreenTab)
                     NavigationBarTabItem(AccountScreenTab)
                 }
             }

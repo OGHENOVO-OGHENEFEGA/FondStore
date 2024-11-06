@@ -3,7 +3,7 @@ package com.fondstore.helpCentre
 import cafe.adriel.voyager.core.model.StateScreenModel
 import kotlinx.coroutines.flow.update
 
-class HelpCenterScreenModel : StateScreenModel<HelpCentreScreenState>(HelpCentreScreenState()) {
+class HelpCentreScreenModel : StateScreenModel<HelpCentreScreenState>(HelpCentreScreenState()) {
     fun onEvent(event: HelpCentreScreenEvent) {
         when(event) {
             is HelpCentreScreenEvent.Navigate -> navigate(event.destination)

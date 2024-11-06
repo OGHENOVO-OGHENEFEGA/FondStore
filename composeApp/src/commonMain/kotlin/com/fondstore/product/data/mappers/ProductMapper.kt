@@ -1,6 +1,7 @@
 package com.fondstore.product.data.mappers
 
 import com.fondstore.product.data.remote.responses.CategoryResponse
+import com.fondstore.product.data.remote.responses.NewArrivalResponse
 import com.fondstore.product.data.remote.responses.ProductResponse
 import com.fondstore.product.data.remote.responses.SectionItemsResponse
 import com.fondstore.product.data.remote.responses.SectionResponse
@@ -61,6 +62,14 @@ fun CategoryResponse.Success.toCategory(): Category {
 
 fun CategoryResponse.Error.toError(): CategoryError {
     return CategoryError(error = error.ifBlank { detail })
+}
+
+fun NewArrivalResponse.Success.toProduct(): Product {
+    return item.toProduct()
+}
+
+fun NewArrivalResponse.Error.toError(): ProductError {
+    return ProductError(error = error.ifBlank { detail })
 }
 
 fun SubcategoryResponse.Success.toSubcategory(): Subcategory {

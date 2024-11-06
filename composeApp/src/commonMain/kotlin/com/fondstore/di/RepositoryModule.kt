@@ -2,6 +2,8 @@ package com.fondstore.di
 
 import com.fondstore.auth.data.repositories.KtorAuthRepository
 import com.fondstore.auth.domain.repositories.AuthRepository
+import com.fondstore.contactUs.data.repositories.KtorContactUsRepository
+import com.fondstore.contactUs.domain.repositories.ContactUsRepository
 import com.fondstore.faqs.data.repositories.KtorFaqsRepository
 import com.fondstore.faqs.domain.repositories.FaqsRepository
 import com.fondstore.launcher.data.repositories.RealmLauncherRepository
@@ -14,6 +16,8 @@ import com.fondstore.product.data.repositories.KtorProductRepository
 import com.fondstore.product.domain.repositories.ProductRepository
 import com.fondstore.profile.data.repositories.KtorProfileRepository
 import com.fondstore.profile.domain.repositories.ProfileRepository
+import com.fondstore.returnAndExchangePolicy.data.repositories.KtorReturnAndExchangePolicyRepository
+import com.fondstore.returnAndExchangePolicy.domain.repositories.ReturnAndExchangePolicyRepository
 import com.fondstore.termsAndConditions.data.repositories.KtorTermsAndConditionRepository
 import com.fondstore.termsAndConditions.domain.repositories.TermsAndConditionRepository
 import org.koin.dsl.module
@@ -49,5 +53,13 @@ val repositoryModule = module {
 
     factory<TermsAndConditionRepository> {
         KtorTermsAndConditionRepository(get())
+    }
+
+    factory<ReturnAndExchangePolicyRepository> {
+        KtorReturnAndExchangePolicyRepository(get())
+    }
+
+    factory<ContactUsRepository> {
+        KtorContactUsRepository(get())
     }
 }

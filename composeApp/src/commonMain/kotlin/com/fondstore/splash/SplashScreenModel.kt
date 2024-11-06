@@ -11,7 +11,7 @@ class SplashScreenModel : StateScreenModel<SplashScreenState>(SplashScreenState(
         }
     }
 
-    private fun navigate(destination: SplashScreenDestination?) {
+    private fun navigate(destination: SplashScreenDestination) {
         mutableState.update {
             it.copy(destination = destination)
         }

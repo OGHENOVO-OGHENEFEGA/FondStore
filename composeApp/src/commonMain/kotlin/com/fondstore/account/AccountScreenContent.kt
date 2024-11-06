@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.sp
 import cafe.adriel.voyager.navigator.CurrentScreen
 import cafe.adriel.voyager.navigator.Navigator
 import com.fondstore.helpCentre.HelpCentreScreen
+import com.fondstore.profile.presentation.ProfileScreen
 import com.fondstore.resources.presentation.fontFamilyResource
 import fondstore.composeapp.generated.resources.DMSans_Medium
 import fondstore.composeapp.generated.resources.Res
@@ -31,11 +32,11 @@ import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun AccountScreenContent() {
-    Navigator(HelpCentreScreen()) { navigator ->
+    Navigator(ProfileScreen()) { navigator ->
         Column(modifier = Modifier.fillMaxSize()) {
             Spacer(modifier = Modifier.height(19.dp))
 
-            val text = if (navigator.lastItemOrNull !is HelpCentreScreen) {
+            val text = if (navigator.lastItemOrNull is ProfileScreen) {
                 stringResource(Res.string.my_profile)
             } else {
                 stringResource(Res.string.help_centre)
@@ -44,8 +45,10 @@ fun AccountScreenContent() {
             Row(modifier = Modifier.fillMaxWidth().padding(start = 10.dp)) {
                 Button(
                     onClick = {
-                        if (navigator.lastItemOrNull !is HelpCentreScreen) {
+                        if (navigator.lastItemOrNull is ProfileScreen) {
                             navigator.push(HelpCentreScreen())
+                        } else {
+                            navigator.replaceAll(ProfileScreen())
                         }
                     },
                     contentPadding = PaddingValues(horizontal = 18.43.dp, vertical = 16.5.dp)

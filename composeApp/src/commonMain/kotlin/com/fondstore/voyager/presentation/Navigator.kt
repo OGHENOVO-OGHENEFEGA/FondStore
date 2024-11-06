@@ -1,6 +1,5 @@
 package com.fondstore.voyager.presentation
 
-import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.Navigator
 
 val Navigator.root: Navigator
@@ -19,15 +18,3 @@ val Navigator.root: Navigator
 
         return root
     }
-
-fun Navigator.popWhere(predicate: (Screen) -> Boolean) {
-    val mutableItems = items.toMutableList()
-
-    items.forEach { screen ->
-        if (predicate(screen)) {
-            mutableItems.remove(screen)
-        }
-    }
-
-    replaceAll(items = mutableItems)
-}

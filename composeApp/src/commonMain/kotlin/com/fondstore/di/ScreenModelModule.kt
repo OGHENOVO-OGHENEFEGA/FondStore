@@ -1,12 +1,16 @@
 package com.fondstore.di
 
 import com.fondstore.app.AppScreenModel
+import com.fondstore.contactUs.presentation.ContactUsScreenModel
 import com.fondstore.faqs.presentation.FaqsScreenModel
-import com.fondstore.helpCentre.HelpCenterScreenModel
+import com.fondstore.helpCentre.HelpCentreScreenModel
+import com.fondstore.home.HomeScreenModel
 import com.fondstore.launcher.presentation.LauncherScreenModel
 import com.fondstore.notification.presentation.NotificationsScreenModel
 import com.fondstore.onboarding.OnboardingScreenModel
 import com.fondstore.privacyPolicy.presentation.PrivacyPolicyScreenModel
+import com.fondstore.profile.presentation.ProfileScreenModel
+import com.fondstore.returnAndExchangePolicy.presentation.ReturnAndExchangePolicyScreenModel
 import com.fondstore.search.presentation.SearchScreenModel
 import com.fondstore.splash.SplashScreenModel
 import com.fondstore.store.presentation.StoreScreenModel
@@ -22,8 +26,12 @@ val screenModelModule = module {
     factoryOf(::StoreScreenModel)
     factoryOf(::SearchScreenModel)
     factoryOf(::NotificationsScreenModel)
-    factoryOf(::HelpCenterScreenModel)
+    factoryOf(::HomeScreenModel)
+    factoryOf(::ProfileScreenModel)
+    factoryOf(::HelpCentreScreenModel)
     factoryOf(::FaqsScreenModel)
     factoryOf(::PrivacyPolicyScreenModel)
     factoryOf(::TermsAndConditionScreenModel)
+    factoryOf(::ReturnAndExchangePolicyScreenModel)
+    factoryOf(::ContactUsScreenModel)
 }

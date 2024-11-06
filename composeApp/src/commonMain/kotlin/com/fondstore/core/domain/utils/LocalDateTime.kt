@@ -5,6 +5,10 @@ import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.Month
 import kotlinx.datetime.format.DateTimeComponents
 
+fun String.isInvalidNumber(): Boolean = length in 1..10
+
+fun String.isValidNumber(): Boolean = isNotEmpty() && !isInvalidNumber()
+
 fun String.toLocalDateTime(): LocalDateTime {
     return DateTimeComponents.Formats.ISO_DATE_TIME_OFFSET.parse(this)
         .toLocalDateTime()
@@ -24,18 +28,6 @@ fun LocalDateTime.formatDateTime(): String {
 
 fun LocalDateTime.formatTime(): String {
     return "${hour.formatDateTimeValue()}:${minute.formatDateTimeValue()}:${second.formatDateTimeValue()}"
-}
-
-fun Month.lastDay(leapYear: Boolean): Int {
-    val leap = if (leapYear) 1 else 0
-    return when (this) {
-        Month.FEBRUARY -> 28 + leap
-        Month.APRIL -> 30
-        Month.JUNE -> 30
-        Month.SEPTEMBER -> 30
-        Month.NOVEMBER -> 30
-        else -> 31
-    }
 }
 
 fun String.properCapitalize(): String {

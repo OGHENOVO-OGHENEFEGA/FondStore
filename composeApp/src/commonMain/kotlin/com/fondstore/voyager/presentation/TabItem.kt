@@ -15,6 +15,7 @@ import cafe.adriel.voyager.navigator.tab.LocalTabNavigator
 import cafe.adriel.voyager.navigator.tab.Tab
 import coil3.compose.AsyncImage
 import com.fondstore.account.AccountScreenTab
+import com.fondstore.home.HomeScreenTab
 import com.fondstore.image.presentation.DrawablePaths
 import com.fondstore.ui.presentation.appColors
 import fondstore.composeapp.generated.resources.Res
@@ -25,23 +26,18 @@ import org.jetbrains.compose.resources.ExperimentalResourceApi
 fun RowScope.NavigationBarTabItem(tab: Tab) {
     val navigator = LocalTabNavigator.current
 
-    val isTabSelected = navigator.current == tab
-
     val selectedColor = MaterialTheme.colorScheme.primary
     val unSelectedColor = MaterialTheme.appColors.color50
-    val color = if (isTabSelected) selectedColor else unSelectedColor
+    val color = if (tab.isSelected) selectedColor else unSelectedColor
 
     NavigationBarItem(
-        selected = isTabSelected,
+        selected = tab.isSelected,
         onClick = {
             navigator.current = tab
         },
         icon = {
             val path = when (tab) {
-//        HomeScreenTab -> DrawablePaths.HOME
-//        PaymentScreenTab -> DrawablePaths.PAYMENT
-//        WalletScreenTab -> DrawablePaths.WALLET
-//        VirtualCardsScreenTab -> DrawablePaths.CARDS
+                HomeScreenTab -> DrawablePaths.HOME
                 AccountScreenTab -> DrawablePaths.PROFILE
                 else -> ""
             }

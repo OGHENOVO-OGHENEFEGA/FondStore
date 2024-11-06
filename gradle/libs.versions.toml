@@ -3,27 +3,28 @@ agp = "8.2.2"
 android-compileSdk = "34"
 android-minSdk = "21"
 android-targetSdk = "34"
-androidx-activityCompose = "1.9.2"
+androidx-activityCompose = "1.9.3"
 androidx-appcompat = "1.7.0"
-androidx-constraintlayout = "2.1.4"
-androidx-core-ktx = "1.13.1"
+androidx-constraintlayout = "2.2.0"
+androidx-core-ktx = "1.15.0"
 androidx-espresso-core = "3.6.1"
 androidx-adaptive = "1.0.0"
 androidx-material = "1.12.0"
 androidx-test-junit = "1.2.1"
 compose-plugin = "1.7.0"
 junit = "4.13.2"
-kotlin = "2.0.20"
+kotlin = "2.0.21"
 
 realm = "3.0.0"
 koin = "4.0.0"
 voyager = "1.1.0-beta03"
 kotlinx-serializationJson = "1.7.3"
-ktor = "3.0.0"
-coil = "3.0.0-rc01"
+ktor = "3.0.1"
+coil = "3.0.0-rc02"
 kotlinx-datetime = "0.6.1"
 materii-pullrefresh = "1.4.0-beta03"
-kevinnzou-compose-webview-multiplatform = "1.9.40-alpha03"
+kevinnzou-compose-webview-multiplatform = "1.9.40-alpha04"
+compose-icons = "1.1.1"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -71,6 +72,8 @@ kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.
 materii-pullrefresh = { module = "dev.materii.pullrefresh:pullrefresh", version.ref = "materii-pullrefresh" }
 
 kevinnzou-compose-webview-multiplatform = { module = "io.github.kevinnzou:compose-webview-multiplatform", version.ref = "kevinnzou-compose-webview-multiplatform" }
+
+compose-icons-font-awesome = { module = "br.com.devsrsouza.compose.icons:font-awesome", version.ref = "compose-icons" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

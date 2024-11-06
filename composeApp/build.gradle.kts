@@ -79,6 +79,8 @@ kotlin {
             implementation(libs.materii.pullrefresh)
 
             api(libs.kevinnzou.compose.webview.multiplatform)
+
+            api(libs.compose.icons.font.awesome)
         }
 
         iosMain.dependencies {

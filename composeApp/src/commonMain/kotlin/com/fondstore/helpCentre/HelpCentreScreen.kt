@@ -6,8 +6,10 @@ import androidx.compose.runtime.getValue
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.koin.koinScreenModel
 import cafe.adriel.voyager.navigator.LocalNavigator
+import com.fondstore.contactUs.presentation.ContactUsScreen
 import com.fondstore.faqs.presentation.FaqsScreen
 import com.fondstore.privacyPolicy.presentation.PrivacyPolicyScreen
+import com.fondstore.returnAndExchangePolicy.presentation.ReturnAndExchangePolicyScreen
 import com.fondstore.store.presentation.StoreScreen
 import com.fondstore.termsAndConditions.presentation.TermsAndConditionScreen
 import com.fondstore.voyager.presentation.NavigationKey
@@ -17,7 +19,7 @@ class HelpCentreScreen : Screen {
 
     @Composable
     override fun Content() {
-        val screenModel = koinScreenModel<HelpCenterScreenModel>()
+        val screenModel = koinScreenModel<HelpCentreScreenModel>()
         val state by screenModel.state.collectAsState()
 
         val destination = state.destination
@@ -27,8 +29,8 @@ class HelpCentreScreen : Screen {
                 HelpCentreScreenDestination.FaqsScreen -> FaqsScreen()
                 HelpCentreScreenDestination.PrivacyPolicyScreen -> PrivacyPolicyScreen()
                 HelpCentreScreenDestination.TermsAndConditionScreen -> TermsAndConditionScreen()
-                HelpCentreScreenDestination.ReturnAndExchangePolicyScreen -> TODO()
-                HelpCentreScreenDestination.ContactUsScreen -> TODO()
+                HelpCentreScreenDestination.ReturnAndExchangePolicyScreen -> ReturnAndExchangePolicyScreen()
+                HelpCentreScreenDestination.ContactUsScreen -> ContactUsScreen()
             }
 
             push(
