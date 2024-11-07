@@ -110,8 +110,8 @@ fun SearchScreenContent(
                 products = state.result?.dataOrNull ?: listOf(),
                 favourites = favouritesState.result?.dataOrNull ?: listOf(),
                 favouritesRequestLoadingList = favouritesState.requestLoadingList,
-                onToggleProductFavouritesState = { product ->
-                    onEvent(SearchScreenEvent.ToggleProductFavouritesState(product))
+                onToggleProductFavouriteState = { product ->
+                    onEvent(SearchScreenEvent.ToggleProductFavouriteState(product))
                 },
                 modifier = Modifier.fillMaxSize(),
                 onProductSelected = { product ->

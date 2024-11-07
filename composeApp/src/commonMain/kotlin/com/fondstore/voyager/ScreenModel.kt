@@ -28,20 +28,6 @@ inline fun <reified T : ScreenModel> Screen.koinNavigatorScreenModel(
 }
 
 @Composable
-inline fun <reified T : ScreenModel> Screen.koinParentScreenModel(
-    qualifier: Qualifier? = null,
-    scope: Scope = currentKoinScope(),
-    noinline parameters: ParametersDefinition? = null,
-): T {
-    return koinNavigatorScreenModel(
-        navigator = LocalNavigator.current?.parent,
-        qualifier = qualifier,
-        scope = scope,
-        parameters = parameters
-    )
-}
-
-@Composable
 inline fun <reified T : ScreenModel> Screen.koinRootScreenModel(
     qualifier: Qualifier? = null,
     scope: Scope = currentKoinScope(),

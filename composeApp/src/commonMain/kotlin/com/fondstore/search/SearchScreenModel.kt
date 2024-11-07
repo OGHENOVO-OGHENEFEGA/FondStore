@@ -16,7 +16,7 @@ class SearchScreenModel(private val productRepository: ProductRepository) :
         when (event) {
             is SearchScreenEvent.SetSearchQuery -> setSearchQuery(event.query)
             SearchScreenEvent.SearchProducts -> searchProducts()
-            is SearchScreenEvent.ToggleProductFavouritesState -> {}
+            is SearchScreenEvent.ToggleProductFavouriteState -> {}
             is SearchScreenEvent.Navigate -> navigate(event.destination)
             SearchScreenEvent.ClearDestination -> clearDestination()
             SearchScreenEvent.CloseScreen -> closeScreen()

@@ -23,7 +23,7 @@ fun ProductLazyColumn(
     products: List<Product>,
     favourites: List<Product>,
     favouritesRequestLoadingList: List<Product>,
-    onToggleProductFavouritesState: ((Product) -> Unit),
+    onToggleProductFavouriteState: ((Product) -> Unit),
     modifier: Modifier = Modifier,
     header: (@Composable () -> Unit)? = null,
     contentPadding: PaddingValues = PaddingValues(bottom = 10.dp),
@@ -64,7 +64,7 @@ fun ProductLazyColumn(
                         isFavouritesRequestLoading =
                         favouritesRequestLoadingList.map(Product::id).contains(product.id),
                         onFavouriteCardClicked = {
-                            onToggleProductFavouritesState.invoke(product)
+                            onToggleProductFavouriteState.invoke(product)
                         },
                         onProductClicked = {
                             onProductSelected(product)

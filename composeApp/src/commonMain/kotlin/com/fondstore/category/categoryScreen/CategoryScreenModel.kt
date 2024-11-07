@@ -33,7 +33,7 @@ class CategoryScreenModel(category: Category, private val repository: ProductRep
                 getNextSectionItems(event.section, event.url)
             }
 
-            is CategoryScreenEvent.ToggleProductFavouritesState -> {}
+            is CategoryScreenEvent.ToggleProductFavouriteState -> {}
             is CategoryScreenEvent.Navigate -> navigate(event.destination)
             CategoryScreenEvent.ClearDestination -> clearDestination()
             CategoryScreenEvent.CloseScreen -> closeScreen()

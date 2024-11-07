@@ -20,7 +20,6 @@ import com.fondstore.category.components.SubcategoryRow
 import com.fondstore.core.presentation.screenBackground
 import com.fondstore.core.presentation.screenPadding
 import com.fondstore.favourites.domain.models.FavouritesState
-import com.fondstore.product.domain.models.ProductsState
 import com.fondstore.product.presentation.components.ProductLazyColumn
 import com.fondstore.resources.fontFamilyResource
 import com.fondstore.ui.appColors
@@ -128,9 +127,9 @@ fun CategoryScreenContent(
                                 products = sectionItems?.results ?: listOf(),
                                 favourites = favouritesState.result?.dataOrNull ?: listOf(),
                                 favouritesRequestLoadingList = favouritesState.requestLoadingList,
-                                onToggleProductFavouritesState = { product ->
+                                onToggleProductFavouriteState = { product ->
                                     onEvent(
-                                        CategoryScreenEvent.ToggleProductFavouritesState(
+                                        CategoryScreenEvent.ToggleProductFavouriteState(
                                             product = product
                                         )
                                     )

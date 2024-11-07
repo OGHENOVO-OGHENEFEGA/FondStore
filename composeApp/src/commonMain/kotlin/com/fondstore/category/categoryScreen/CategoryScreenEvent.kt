@@ -9,7 +9,7 @@ sealed interface CategoryScreenEvent {
     data class SelectSubcategory(val subcategory: Subcategory) : CategoryScreenEvent
     data class SelectSection(val subcategory: Subcategory, val section: Section) : CategoryScreenEvent
     data class GetNextSectionItems(val section: Section, val url: String) : CategoryScreenEvent
-    data class ToggleProductFavouritesState(val product: Product) : CategoryScreenEvent
+    data class ToggleProductFavouriteState(val product: Product) : CategoryScreenEvent
     data class Navigate(val destination: CategoryScreenDestination) : CategoryScreenEvent
     data object ClearDestination : CategoryScreenEvent
     data object CloseScreen : CategoryScreenEvent

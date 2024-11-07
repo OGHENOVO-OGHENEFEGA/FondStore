@@ -41,7 +41,7 @@ fun TrendingCategoryScreenContent(
             products = state.result?.dataOrNull?.results ?: listOf(),
             favourites = favouritesState.result?.dataOrNull ?: listOf(),
             favouritesRequestLoadingList = favouritesState.requestLoadingList,
-            onToggleProductFavouritesState = { id ->
+            onToggleProductFavouriteState = { id ->
                 onEvent(TrendingCategoryScreenEvent.ToggleProductFavouriteState(id))
             },
             modifier = Modifier.fillMaxSize(),

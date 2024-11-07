@@ -237,7 +237,7 @@
     <string name="payment">Payment</string>
 
     // product
-    <string name="no_product">No Product.</string>
+    <string name="no_product">No Product</string>
 
     // favourites
     <string name="add_to_favourites">Add to Favourites</string>
@@ -252,13 +252,6 @@
 
     // error
     <string name="error">Error</string>
-    <string name="no_internet">No Internet</string>
-    <string name="network_error">Network error</string>
-    <string name="authorization_error">Authorization error</string>
-    <string name="no_data_error">No data error</string>
-    <string name="serialization_error">Encoding/Decoding error</string>
-    <string name="client_request_error">Request error</string>
-    <string name="server_response_error">Server response error</string>
     <string name="an_error_occurred">An error occurred</string>
     <string name="image_query_failure_message">Could not load image</string>
     <string name="refresh">Refresh</string>

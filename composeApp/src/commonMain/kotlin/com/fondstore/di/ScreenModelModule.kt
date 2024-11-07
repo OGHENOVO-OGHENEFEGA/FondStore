@@ -1,6 +1,9 @@
 package com.fondstore.di
 
 import com.fondstore.app.AppScreenModel
+import com.fondstore.auth.presentation.forgotPasswordScreen.ForgotPasswordScreenModel
+import com.fondstore.auth.presentation.signInScreen.SignInScreenModel
+import com.fondstore.auth.presentation.signUpScreen.SignUpScreenModel
 import com.fondstore.category.categoriesScreen.CategoriesScreenModel
 import com.fondstore.category.categoryScreen.CategoryScreenModel
 import com.fondstore.category.trendingCategoryScreen.TrendingCategoryScreenModel
@@ -49,4 +52,8 @@ val screenModelModule = module {
     factoryOf(::TermsAndConditionScreenModel)
     factoryOf(::ReturnAndExchangePolicyScreenModel)
     factoryOf(::ContactUsScreenModel)
+
+    factoryOf(::SignInScreenModel)
+    factoryOf(::SignUpScreenModel)
+    factoryOf(::ForgotPasswordScreenModel)
 }

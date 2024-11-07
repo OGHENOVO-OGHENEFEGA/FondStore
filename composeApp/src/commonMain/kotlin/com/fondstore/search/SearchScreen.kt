@@ -5,6 +5,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.koin.koinScreenModel
+import com.fondstore.app.AppEvent
 import com.fondstore.app.AppScreenModel
 import com.fondstore.voyager.koinRootScreenModel
 import com.fondstore.voyager.pop
@@ -20,11 +21,21 @@ class SearchScreen : Screen {
             pop()
         }
 
-        val destination = state.destination
-
-        if (destination != null) {
-            screenModel.onEvent(SearchScreenEvent.ClearDestination)
-        }
+//        val destination = state.destination
+//
+//        if (destination != null) {
+//            val screen = when (destination) {
+//                SearchScreenDestination.AuthScreen -> AuthScreen()
+//                is SearchScreenDestination.ProductScreen -> TODO()
+//            }
+//
+//            push(
+//                screen = screen,
+//                onNavigation = {
+//                    screenModel.onEvent(SearchScreenEvent.ClearDestination)
+//                }
+//            )
+//        }
 
         val appScreenModel = koinRootScreenModel<AppScreenModel>()
         val appState by appScreenModel.state.collectAsState()
@@ -32,7 +43,15 @@ class SearchScreen : Screen {
         SearchScreenContent(
             state = state,
             favouritesState = appState.favouritesState,
-            onEvent = screenModel::onEvent
+            onEvent = { event ->
+                when (event) {
+                    is SearchScreenEvent.ToggleProductFavouriteState -> {
+                        appScreenModel.onEvent(AppEvent.ToggleProductFavouriteState(event.product))
+                    }
+
+                    else -> screenModel.onEvent(event)
+                }
+            }
         )
     }
 }

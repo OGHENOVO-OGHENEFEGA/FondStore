@@ -1,10 +1,8 @@
 package com.fondstore.product.presentation.productGroupScreen
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import cafe.adriel.voyager.core.lifecycle.LifecycleEffect
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.koin.koinScreenModel
 import com.fondstore.app.AppEvent
@@ -23,11 +21,20 @@ data class ProductGroupsScreen(private val group: ProductGroup) : Screen {
 
         val state by screenModel.state.collectAsState()
 
-        val destination = state.destination
-
-        if (destination != null) {
-            screenModel.onEvent(ProductGroupsScreenEvent.ClearDestination)
-        }
+//        val destination = state.destination
+//
+//        if (destination != null) {
+//            val screen = when (destination) {
+//                is ProductGroupsScreenDestination.ProductScreen -> TODO()
+//            }
+//
+//            push(
+//                screen = screen,
+//                onNavigation = {
+//                    screenModel.onEvent(ProductGroupsScreenEvent.ClearDestination)
+//                }
+//            )
+//        }
 
         val appScreenModel = koinRootScreenModel<AppScreenModel>()
         val appState by appScreenModel.state.collectAsState()
@@ -36,7 +43,15 @@ data class ProductGroupsScreen(private val group: ProductGroup) : Screen {
             state = state,
             productsState = appState.productsState,
             favouritesState = appState.favouritesState,
-            onEvent = screenModel::onEvent
+            onEvent = { event ->
+                when (event) {
+                    is ProductGroupsScreenEvent.ToggleProductFavouriteState -> {
+                        appScreenModel.onEvent(AppEvent.ToggleProductFavouriteState(event.product))
+                    }
+
+                    else -> screenModel.onEvent(event)
+                }
+            }
         )
     }
 }

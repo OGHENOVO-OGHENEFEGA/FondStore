@@ -5,7 +5,6 @@ import com.fondstore.product.domain.models.Product
 import com.fondstore.product.domain.models.ProductGroup
 
 sealed interface HomeScreenDestination {
-    data object AuthScreen : HomeScreenDestination
     data class ProductScreen(val product: Product) : HomeScreenDestination
     data class ProductGroupsScreen(val group: ProductGroup) : HomeScreenDestination
     data class CategoryScreen(val category: Category) : HomeScreenDestination

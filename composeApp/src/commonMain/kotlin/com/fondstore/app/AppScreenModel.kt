@@ -2,24 +2,45 @@ package com.fondstore.app
 
 import cafe.adriel.voyager.core.model.StateScreenModel
 import cafe.adriel.voyager.core.model.screenModelScope
-import com.fondstore.error.Result
+import com.fondstore.auth.domain.models.AuthTokensState
+import com.fondstore.auth.domain.repositories.AuthRepository
 import com.fondstore.product.domain.models.Product
 import com.fondstore.product.domain.repositories.ProductRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.NonCancellable
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class AppScreenModel(private val productRepository: ProductRepository) :
-    StateScreenModel<AppState>(AppState()) {
+class AppScreenModel(
+    private val authRepository: AuthRepository,
+    private val productRepository: ProductRepository,
+) : StateScreenModel<AppState>(AppState()) {
     private lateinit var getProductJob: Job
+
+    init {
+        screenModelScope.launch(Dispatchers.IO) {
+            authRepository.getLocalAuthTokensFlow().collectLatest { tokens ->
+                withContext(Dispatchers.Main + NonCancellable) {
+                    mutableState.update {
+                        it.copy(authTokens = tokens)
+                    }
+                }
+            }
+        }
+    }
 
     fun onEvent(event: AppEvent) {
         when (event) {
             AppEvent.GetProducts -> getProducts()
+            is AppEvent.ToggleProductFavouriteState -> {
+                toggleProductFavouriteState(event.product)
+            }
+
+            AppEvent.ClearDestination -> clearDestination()
         }
     }
 
@@ -161,6 +182,20 @@ class AppScreenModel(private val productRepository: ProductRepository) :
                     )
                 )
             }
+        }
+    }
+
+    private fun toggleProductFavouriteState(product: Product) {
+        if (state.value.authTokens?.state != AuthTokensState.AVAILABLE) {
+            mutableState.update {
+                it.copy(destination = AppDestination.AuthScreen)
+            }
+        }
+    }
+
+    private fun clearDestination() {
+        mutableState.update {
+            it.copy(destination = null)
         }
     }
 }

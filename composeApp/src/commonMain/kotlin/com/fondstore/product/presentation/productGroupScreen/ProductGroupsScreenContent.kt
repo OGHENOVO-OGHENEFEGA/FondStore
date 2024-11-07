@@ -103,7 +103,7 @@ fun ProductGroupsScreenContent(
                 products = products,
                 favourites = favouritesState.result?.dataOrNull ?: listOf(),
                 favouritesRequestLoadingList = favouritesState.requestLoadingList,
-                onToggleProductFavouritesState = { product ->
+                onToggleProductFavouriteState = { product ->
                     onEvent(ProductGroupsScreenEvent.ToggleProductFavouriteState(product))
                 },
                 modifier = Modifier.fillMaxSize(),
