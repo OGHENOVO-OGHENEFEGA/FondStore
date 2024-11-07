@@ -153,8 +153,8 @@ fun HomeScreenContent(
                 products = productsState.popularProductsResult?.dataOrNull ?: listOf(),
                 favourites = favouritesState.result?.dataOrNull ?: listOf(),
                 favouritesRequestLoadingList = favouritesState.requestLoadingList,
-                onToggleProductFavouritesState = { id ->
-                    onEvent(HomeScreenEvent.ToggleProductFavouriteState(id))
+                onToggleProductFavouritesState = { product ->
+                    onEvent(HomeScreenEvent.ToggleProductFavouriteState(product))
                 },
                 onViewAll = {
                     onEvent(
@@ -183,8 +183,8 @@ fun HomeScreenContent(
                 products = productsState.newArrivalsResult?.dataOrNull ?: listOf(),
                 favourites = favouritesState.result?.dataOrNull ?: listOf(),
                 favouritesRequestLoadingList = favouritesState.requestLoadingList,
-                onToggleProductFavouritesState = { id ->
-                    onEvent(HomeScreenEvent.ToggleProductFavouriteState(id))
+                onToggleProductFavouritesState = { product ->
+                    onEvent(HomeScreenEvent.ToggleProductFavouriteState(product))
                 },
                 onViewAll = {
                     onEvent(

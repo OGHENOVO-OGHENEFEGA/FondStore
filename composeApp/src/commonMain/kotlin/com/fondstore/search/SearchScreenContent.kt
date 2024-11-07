@@ -31,7 +31,9 @@ import coil3.compose.AsyncImage
 import com.fondstore.core.presentation.BackNavTopAppBar
 import com.fondstore.core.presentation.screenBackground
 import com.fondstore.core.presentation.screenPadding
+import com.fondstore.favourites.domain.models.FavouritesState
 import com.fondstore.image.DrawablePaths
+import com.fondstore.product.presentation.components.ProductLazyColumn
 import com.fondstore.resources.fontFamilyResource
 import com.fondstore.ui.appColors
 import fondstore.composeapp.generated.resources.DMSans_Regular
@@ -44,7 +46,8 @@ import org.jetbrains.compose.resources.stringResource
 @Composable
 fun SearchScreenContent(
     state: SearchScreenState,
-    onEvent: (SearchScreenEvent) -> Unit
+    favouritesState: FavouritesState,
+    onEvent: (SearchScreenEvent) -> Unit,
 ) {
     Scaffold(
         modifier = Modifier.fillMaxSize(),
@@ -102,24 +105,23 @@ fun SearchScreenContent(
 
             Spacer(modifier = Modifier.height(20.dp))
 
-//            if (productsState.searchedProducts != null) {
-//                ProductLazyColumn(
-//                    products = productsState.searchedProducts,
-//                    modifier = Modifier.fillMaxSize(),
-//                    isLoading = productsState.isSearchingProducts,
-//                    favourites = favouritesState.favourites,
-//                    favouritesRequestLoadingList = favouritesState.requestLoadingList,
-//                    onToggleProductFavouritesState = { id ->
-//                        onEvent(SearchScreenEvent.ToggleProductFavouritesState(id))
-//                    },
-//                    onProductSelected = { product ->
-//                        onEvent(
-//                            SearchScreenEvent
-//                                .Navigate(SearchScreenDestination.ProductScreen(productId = product.id))
-//                        )
-//                    }
-//                )
-//            }
+            ProductLazyColumn(
+                isLoadingProducts = state.isSearching,
+                products = state.result?.dataOrNull ?: listOf(),
+                favourites = favouritesState.result?.dataOrNull ?: listOf(),
+                favouritesRequestLoadingList = favouritesState.requestLoadingList,
+                onToggleProductFavouritesState = { product ->
+                    onEvent(SearchScreenEvent.ToggleProductFavouritesState(product))
+                },
+                modifier = Modifier.fillMaxSize(),
+                onProductSelected = { product ->
+                    onEvent(
+                        SearchScreenEvent.Navigate(
+                            SearchScreenDestination.ProductScreen(product = product)
+                        )
+                    )
+                }
+            )
         }
     }
 }

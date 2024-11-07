@@ -24,6 +24,11 @@ object ProductDataUtil {
     const val NEW_ARRIVALS_URL = "$API_URL/new_arrivals"
     const val GET_NEW_ARRIVALS_TAG = "GET NEW ARRIVALS"
 
+    const val GET_SUBCATEGORIES_TAG = "GET SUBCATEGORIES"
+    const val GET_SECTIONS_TAG = "GET SECTIONS"
+    const val GET_SECTION_ITEMS_TAG = "GET SECTION ITEMS"
+    const val GET_NEXT_SECTION_ITEMS_TAG = "GET NEXT SECTION ITEMS"
+
     fun getSubcategoriesUrl(categoryId: Int) = "$CATEGORIES_URL/$categoryId/subcategories"
 
     fun getSectionsUrl(categoryId: Int, subcategoryId: Int): String {

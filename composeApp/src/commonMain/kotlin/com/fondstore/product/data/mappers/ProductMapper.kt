@@ -88,7 +88,7 @@ fun SectionResponse.Error.toError(): SectionError {
     return SectionError(error = error.ifBlank { detail })
 }
 
-fun SectionItemsResponse.Success.toSection(): SectionItems {
+fun SectionItemsResponse.Success.toSectionItems(): SectionItems {
     return SectionItems(
         count = count,
         next = next,

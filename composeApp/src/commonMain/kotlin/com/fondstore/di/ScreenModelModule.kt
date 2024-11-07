@@ -2,6 +2,7 @@ package com.fondstore.di
 
 import com.fondstore.app.AppScreenModel
 import com.fondstore.category.categoriesScreen.CategoriesScreenModel
+import com.fondstore.category.categoryScreen.CategoryScreenModel
 import com.fondstore.contactUs.presentation.ContactUsScreenModel
 import com.fondstore.faqs.presentation.FaqsScreenModel
 import com.fondstore.helpCentre.HelpCentreScreenModel
@@ -22,18 +23,26 @@ import org.koin.dsl.module
 
 val screenModelModule = module {
     factoryOf(::AppScreenModel)
+
     factoryOf(::LauncherScreenModel)
     factoryOf(::SplashScreenModel)
     factoryOf(::OnboardingScreenModel)
+
     factoryOf(::StoreScreenModel)
+
     factoryOf(::SearchScreenModel)
     factoryOf(::NotificationsScreenModel)
+
     factoryOf(::HomeScreenModel)
+
     factoryOf(::ProductGroupsScreenModel)
     factory { holder ->
         CategoriesScreenModel(categories = holder.get())
     }
+    factoryOf(::CategoryScreenModel)
+
     factoryOf(::ProfileScreenModel)
+
     factoryOf(::HelpCentreScreenModel)
     factoryOf(::FaqsScreenModel)
     factoryOf(::PrivacyPolicyScreenModel)

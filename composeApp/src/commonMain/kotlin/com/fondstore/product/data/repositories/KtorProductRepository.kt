@@ -5,10 +5,16 @@ import com.fondstore.ktor.safeGet
 import com.fondstore.product.data.mappers.toCategory
 import com.fondstore.product.data.mappers.toError
 import com.fondstore.product.data.mappers.toProduct
+import com.fondstore.product.data.mappers.toSection
+import com.fondstore.product.data.mappers.toSectionItems
+import com.fondstore.product.data.mappers.toSubcategory
 import com.fondstore.product.data.remote.responses.CategoryResponse
 import com.fondstore.product.data.remote.responses.NewArrivalResponse
 import com.fondstore.product.data.remote.responses.ProductResponse
 import com.fondstore.product.data.remote.responses.ProductSearchResponse
+import com.fondstore.product.data.remote.responses.SectionItemsResponse
+import com.fondstore.product.data.remote.responses.SectionResponse
+import com.fondstore.product.data.remote.responses.SubcategoryResponse
 import com.fondstore.product.data.utils.ProductDataUtil
 import com.fondstore.product.domain.errors.CategoryError
 import com.fondstore.product.domain.errors.ProductError
@@ -151,33 +157,86 @@ class KtorProductRepository(private val client: HttpClient) : ProductRepository 
     }
 
     override suspend fun getSubcategories(categoryId: Int): Result<List<Subcategory>, SubcategoryError> {
-        TODO("Not yet implemented")
+        return client.safeGet(
+            urlString = ProductDataUtil.getSubcategoriesUrl(categoryId = categoryId),
+            tag = ProductDataUtil.GET_SUBCATEGORIES_TAG,
+            responseBlock = { response ->
+                if (response.status.isSuccess()) {
+                    Result.Success(
+                        response.body<List<SubcategoryResponse.Success>>()
+                            .map(SubcategoryResponse.Success::toSubcategory)
+                    )
+                } else {
+                    Result.Error(response.body<SubcategoryResponse.Error>().toError())
+                }
+            }
+        )
     }
 
     override suspend fun getSections(
         categoryId: Int,
         subcategoryId: Int,
     ): Result<List<Section>, SectionError> {
-        TODO("Not yet implemented")
+        return client.safeGet(
+            urlString = ProductDataUtil.getSectionsUrl(
+                categoryId = categoryId,
+                subcategoryId = subcategoryId
+            ),
+            tag = ProductDataUtil.GET_SECTIONS_TAG,
+            responseBlock = { response ->
+                if (response.status.isSuccess()) {
+                    Result.Success(
+                        response.body<List<SectionResponse.Success>>()
+                            .map(SectionResponse.Success::toSection)
+                    )
+                } else {
+                    Result.Error(response.body<SectionResponse.Error>().toError())
+                }
+            }
+        )
     }
 
-    override suspend fun getSectionItemsInfo(
+    override suspend fun getSectionItems(
         categoryId: Int,
         subcategoryId: Int,
         sectionId: Int,
     ): Result<SectionItems, SectionItemsError> {
+        return client.safeGet(
+            urlString = ProductDataUtil.getSectionsItemsUrl(
+                categoryId = categoryId,
+                subcategoryId = subcategoryId,
+                sectionId = sectionId
+            ),
+            tag = ProductDataUtil.GET_SECTION_ITEMS_TAG,
+            responseBlock = { response ->
+                if (response.status.isSuccess()) {
+                    Result.Success(response.body<SectionItemsResponse.Success>().toSectionItems())
+                } else {
+                    Result.Error(response.body<SectionItemsResponse.Error>().toError())
+                }
+            }
+        )
+    }
+
+    override suspend fun getNextSectionItems(url: String): Result<SectionItems, SectionItemsError> {
+        return client.safeGet(
+            urlString = url,
+            tag = ProductDataUtil.GET_NEXT_SECTION_ITEMS_TAG,
+            responseBlock = { response ->
+                if (response.status.isSuccess()) {
+                    Result.Success(response.body<SectionItemsResponse.Success>().toSectionItems())
+                } else {
+                    Result.Error(response.body<SectionItemsResponse.Error>().toError())
+                }
+            }
+        )
+    }
+
+    override suspend fun getTrendingCategoryItems(categoryId: Int): Result<TrendingCategoryItems, TrendingCategoryItemsError> {
         TODO("Not yet implemented")
     }
 
-    override suspend fun getNextSectionItemsInfo(url: String): Result<SectionItems, SectionItemsError> {
-        TODO("Not yet implemented")
-    }
-
-    override suspend fun getTrendingCategoryItemsInfo(categoryId: Int): Result<TrendingCategoryItems, TrendingCategoryItemsError> {
-        TODO("Not yet implemented")
-    }
-
-    override suspend fun getNextTrendingCategoryItemsInfo(url: String): Result<TrendingCategoryItems, TrendingCategoryItemsError> {
+    override suspend fun getNextTrendingCategoryItems(url: String): Result<TrendingCategoryItems, TrendingCategoryItemsError> {
         TODO("Not yet implemented")
     }
 

@@ -3,15 +3,16 @@ package com.fondstore.home
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import cafe.adriel.voyager.koin.koinScreenModel
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabOptions
-import category.categories.CategoriesScreen
+import com.fondstore.category.categoriesScreen.CategoriesScreen
 import com.fondstore.app.AppScreenModel
+import com.fondstore.category.categoryScreen.CategoryScreen
 import com.fondstore.product.presentation.productGroupScreen.ProductGroupsScreen
 import com.fondstore.store.StoreScreen
 import com.fondstore.voyager.NavigationKey
+import com.fondstore.voyager.koinParentScreenModel
 import com.fondstore.voyager.koinRootScreenModel
 import com.fondstore.voyager.push
 import fondstore.composeapp.generated.resources.Res
@@ -29,7 +30,7 @@ object HomeScreenTab : Tab {
 
     @Composable
     override fun Content() {
-        val screenModel = koinScreenModel<HomeScreenModel>()
+        val screenModel = koinParentScreenModel<HomeScreenModel>()
         val state by screenModel.state.collectAsState()
 
         val destination = state.destination
@@ -41,7 +42,9 @@ object HomeScreenTab : Tab {
                     ProductGroupsScreen(group = destination.group)
                 }
 
-                is HomeScreenDestination.CategoryScreen -> TODO()
+                is HomeScreenDestination.CategoryScreen -> {
+                    CategoryScreen(encodedCategory = Json.encodeToString(destination.category))
+                }
 
                 is HomeScreenDestination.CategoriesScreen -> {
                     CategoriesScreen(encodedCategories = Json.encodeToString(destination.categories))

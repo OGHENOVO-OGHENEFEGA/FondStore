@@ -15,7 +15,7 @@ import com.fondstore.product.domain.models.Subcategory
 import com.fondstore.product.domain.models.TrendingCategoryItems
 
 interface ProductRepository {
-    suspend fun searchProducts(query: String) : Result<List<Product>, ProductError>
+    suspend fun searchProducts(query: String): Result<List<Product>, ProductError>
     suspend fun getExploreProducts(): Result<List<Product>, ProductError>
     suspend fun getCategories(): Result<List<Category>, CategoryError>
     suspend fun getBestDeals(): Result<List<Product>, ProductError>
@@ -23,10 +23,19 @@ interface ProductRepository {
     suspend fun getPopularProducts(): Result<List<Product>, ProductError>
     suspend fun getNewArrivals(): Result<List<Product>, ProductError>
     suspend fun getSubcategories(categoryId: Int): Result<List<Subcategory>, SubcategoryError>
-    suspend fun getSections(categoryId: Int, subcategoryId: Int): Result<List<Section>, SectionError>
-    suspend fun getSectionItemsInfo(categoryId: Int, subcategoryId: Int, sectionId: Int): Result<SectionItems, SectionItemsError>
-    suspend fun getNextSectionItemsInfo(url: String): Result<SectionItems, SectionItemsError>
-    suspend fun getTrendingCategoryItemsInfo(categoryId: Int): Result<TrendingCategoryItems, TrendingCategoryItemsError>
-    suspend fun getNextTrendingCategoryItemsInfo(url: String): Result<TrendingCategoryItems, TrendingCategoryItemsError>
+    suspend fun getSections(
+        categoryId: Int,
+        subcategoryId: Int,
+    ): Result<List<Section>, SectionError>
+
+    suspend fun getSectionItems(
+        categoryId: Int,
+        subcategoryId: Int,
+        sectionId: Int,
+    ): Result<SectionItems, SectionItemsError>
+
+    suspend fun getNextSectionItems(url: String): Result<SectionItems, SectionItemsError>
+    suspend fun getTrendingCategoryItems(categoryId: Int): Result<TrendingCategoryItems, TrendingCategoryItemsError>
+    suspend fun getNextTrendingCategoryItems(url: String): Result<TrendingCategoryItems, TrendingCategoryItemsError>
     suspend fun getSelectedProduct(productId: String, token: String?): Result<Product, ProductError>
 }
