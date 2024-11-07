@@ -151,7 +151,7 @@ fun CategoryScreenContent(
                                 onProductSelected = { product ->
                                     onEvent(
                                         CategoryScreenEvent.Navigate(
-                                            CategoryScreenDestination.ProductScreen(product = product)
+                                            CategoryScreenDestination.ProductScreen(product)
                                         )
                                     )
                                 }

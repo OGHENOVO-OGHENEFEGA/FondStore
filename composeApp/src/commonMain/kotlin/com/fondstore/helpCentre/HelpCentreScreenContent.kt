@@ -81,25 +81,33 @@ fun HelpCentreScreenContent(onEvent: (HelpCentreScreenEvent) -> Unit) {
 
                 HelpCentreOptionBox(name = stringResource(Res.string.privacy_policy)) {
                     onEvent(
-                        HelpCentreScreenEvent.Navigate(HelpCentreScreenDestination.PrivacyPolicyScreen)
+                        HelpCentreScreenEvent.Navigate(
+                            HelpCentreScreenDestination.PrivacyPolicyScreen
+                        )
                     )
                 }
 
                 HelpCentreOptionBox(name = stringResource(Res.string.terms_and_condition)) {
                     onEvent(
-                        HelpCentreScreenEvent.Navigate(HelpCentreScreenDestination.TermsAndConditionScreen)
+                        HelpCentreScreenEvent.Navigate(
+                            HelpCentreScreenDestination.TermsAndConditionScreen
+                        )
                     )
                 }
 
                 HelpCentreOptionBox(name = stringResource(Res.string.return_and_exchange_policy)) {
                     onEvent(
-                        HelpCentreScreenEvent.Navigate(HelpCentreScreenDestination.ReturnAndExchangePolicyScreen)
+                        HelpCentreScreenEvent.Navigate(
+                            HelpCentreScreenDestination.ReturnAndExchangePolicyScreen
+                        )
                     )
                 }
 
                 HelpCentreOptionBox(name = stringResource(Res.string.contact_us)) {
                     onEvent(
-                        HelpCentreScreenEvent.Navigate(HelpCentreScreenDestination.ContactUsScreen)
+                        HelpCentreScreenEvent.Navigate(
+                            HelpCentreScreenDestination.ContactUsScreen
+                        )
                     )
                 }
             }

@@ -1,8 +1,10 @@
 package com.fondstore.product.data.repositories
 
 import com.fondstore.error.Result
+import com.fondstore.ktor.authHeader
 import com.fondstore.ktor.safeGet
 import com.fondstore.product.data.mappers.toCategory
+import com.fondstore.product.data.mappers.toCategoryItems
 import com.fondstore.product.data.mappers.toError
 import com.fondstore.product.data.mappers.toProduct
 import com.fondstore.product.data.mappers.toSection
@@ -15,6 +17,7 @@ import com.fondstore.product.data.remote.responses.ProductSearchResponse
 import com.fondstore.product.data.remote.responses.SectionItemsResponse
 import com.fondstore.product.data.remote.responses.SectionResponse
 import com.fondstore.product.data.remote.responses.SubcategoryResponse
+import com.fondstore.product.data.remote.responses.TrendingCategoryItemsResponse
 import com.fondstore.product.data.utils.ProductDataUtil
 import com.fondstore.product.domain.errors.CategoryError
 import com.fondstore.product.domain.errors.ProductError
@@ -156,6 +159,26 @@ class KtorProductRepository(private val client: HttpClient) : ProductRepository 
         )
     }
 
+    override suspend fun getProduct(
+        productId: String,
+        token: String?,
+    ): Result<Product, ProductError> {
+        return client.safeGet(
+            urlString = ProductDataUtil.getProductUrl(productId = productId),
+            tag = ProductDataUtil.GET_PRODUCT_TAG,
+            requestBlock = {
+                authHeader(token = token)
+            },
+            responseBlock = { response ->
+                if (response.status.isSuccess()) {
+                    Result.Success(response.body<ProductResponse.Success>().toProduct())
+                } else {
+                    Result.Error(response.body<ProductResponse.Error>().toError())
+                }
+            }
+        )
+    }
+
     override suspend fun getSubcategories(categoryId: Int): Result<List<Subcategory>, SubcategoryError> {
         return client.safeGet(
             urlString = ProductDataUtil.getSubcategoriesUrl(categoryId = categoryId),
@@ -233,17 +256,34 @@ class KtorProductRepository(private val client: HttpClient) : ProductRepository 
     }
 
     override suspend fun getTrendingCategoryItems(categoryId: Int): Result<TrendingCategoryItems, TrendingCategoryItemsError> {
-        TODO("Not yet implemented")
+        return client.safeGet(
+            urlString = ProductDataUtil.getTrendingCategoryItemsUrl(categoryId),
+            tag = ProductDataUtil.GET_TRENDING_CATEGORY_ITEMS_TAG,
+            responseBlock = { response ->
+                if (response.status.isSuccess()) {
+                    Result.Success(
+                        response.body<TrendingCategoryItemsResponse.Success>().toCategoryItems()
+                    )
+                } else {
+                    Result.Error(response.body<TrendingCategoryItemsResponse.Error>().toError())
+                }
+            }
+        )
     }
 
     override suspend fun getNextTrendingCategoryItems(url: String): Result<TrendingCategoryItems, TrendingCategoryItemsError> {
-        TODO("Not yet implemented")
-    }
-
-    override suspend fun getSelectedProduct(
-        productId: String,
-        token: String?,
-    ): Result<Product, ProductError> {
-        TODO("Not yet implemented")
+        return client.safeGet(
+            urlString = url,
+            tag = ProductDataUtil.GET_NEXT_TRENDING_CATEGORY_ITEMS_TAG,
+            responseBlock = { response ->
+                if (response.status.isSuccess()) {
+                    Result.Success(
+                        response.body<TrendingCategoryItemsResponse.Success>().toCategoryItems()
+                    )
+                } else {
+                    Result.Error(response.body<TrendingCategoryItemsResponse.Error>().toError())
+                }
+            }
+        )
     }
 }

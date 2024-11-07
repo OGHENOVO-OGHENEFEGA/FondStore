@@ -117,7 +117,7 @@ fun SearchScreenContent(
                 onProductSelected = { product ->
                     onEvent(
                         SearchScreenEvent.Navigate(
-                            SearchScreenDestination.ProductScreen(product = product)
+                            SearchScreenDestination.ProductScreen(product)
                         )
                     )
                 }

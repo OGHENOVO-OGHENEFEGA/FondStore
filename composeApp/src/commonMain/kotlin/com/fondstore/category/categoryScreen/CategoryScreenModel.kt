@@ -175,8 +175,10 @@ class CategoryScreenModel(category: Category, private val repository: ProductRep
 
                         val resultMap = it.sectionItemsResultMap.toMutableMap()
 
+                        val currentResult = resultMap[section]
+
                         val newResult = if (result is Result.Success) {
-                            when (val currentResult = resultMap[section]) {
+                            when (currentResult) {
                                 is Result.Success -> {
                                     currentResult.copy(
                                         currentResult.data.copy(
@@ -187,11 +189,14 @@ class CategoryScreenModel(category: Category, private val repository: ProductRep
                                         )
                                     )
                                 }
+
                                 else -> result
                             }
-                        } else result
+                        } else currentResult
 
-                        resultMap[section] = newResult
+                        if (newResult != null) {
+                            resultMap[section] = newResult
+                        }
 
                         it.copy(
                             nextSectionItemsLoadingList = loadingList,

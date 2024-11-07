@@ -9,6 +9,7 @@ import cafe.adriel.voyager.navigator.tab.TabOptions
 import com.fondstore.category.categoriesScreen.CategoriesScreen
 import com.fondstore.app.AppScreenModel
 import com.fondstore.category.categoryScreen.CategoryScreen
+import com.fondstore.category.trendingCategoryScreen.TrendingCategoryScreen
 import com.fondstore.product.presentation.productGroupScreen.ProductGroupsScreen
 import com.fondstore.store.StoreScreen
 import com.fondstore.voyager.NavigationKey
@@ -38,6 +39,9 @@ object HomeScreenTab : Tab {
         if (destination != null) {
             val screen = when (destination) {
                 HomeScreenDestination.AuthScreen -> TODO()
+
+                is HomeScreenDestination.ProductScreen -> TODO()
+
                 is HomeScreenDestination.ProductGroupsScreen -> {
                     ProductGroupsScreen(group = destination.group)
                 }
@@ -50,8 +54,9 @@ object HomeScreenTab : Tab {
                     CategoriesScreen(encodedCategories = Json.encodeToString(destination.categories))
                 }
 
-                is HomeScreenDestination.ProductScreen -> TODO()
-                is HomeScreenDestination.TrendingCategoryScreen -> TODO()
+                is HomeScreenDestination.TrendingCategoryScreen -> {
+                    TrendingCategoryScreen(encodedCategory = Json.encodeToString(destination.category))
+                }
             }
 
             push(

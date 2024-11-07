@@ -58,45 +58,33 @@ fun HomeScreenContent(
                 onViewAll = {
                     onEvent(
                         HomeScreenEvent.Navigate(
-                            HomeScreenDestination.ProductGroupsScreen(
-                                group = ProductGroup.EXPLORE
-                            )
+                            HomeScreenDestination.ProductGroupsScreen(ProductGroup.EXPLORE)
                         )
                     )
                 },
                 onProductSelected = { product ->
-                    onEvent(
-                        HomeScreenEvent.Navigate(
-                            HomeScreenDestination.ProductScreen(
-                                product = product
-                            )
-                        )
-                    )
+                    onEvent(HomeScreenEvent.Navigate(HomeScreenDestination.ProductScreen(product)))
                 }
             )
+
+            val categories = productsState.categoriesResult?.dataOrNull ?: listOf()
 
             CategoriesShelf(
                 name = stringResource(Res.string.categories),
                 description = stringResource(Res.string.categories_description),
                 isGettingCategories = productsState.isGettingCategories,
-                categories = productsState.categoriesResult?.dataOrNull ?: listOf(),
+                categories = categories,
                 onViewAll = {
                     onEvent(
                         HomeScreenEvent.Navigate(
                             HomeScreenDestination.CategoriesScreen(
-                                categories = productsState.categoriesResult?.dataOrNull ?: listOf()
+                                categories = categories
                             )
                         )
                     )
                 },
                 onCategorySelected = { category ->
-                    onEvent(
-                        HomeScreenEvent.Navigate(
-                            HomeScreenDestination.CategoryScreen(
-                                category = category
-                            )
-                        )
-                    )
+                    onEvent(HomeScreenEvent.Navigate(HomeScreenDestination.CategoryScreen(category)))
                 }
             )
 
@@ -113,20 +101,12 @@ fun HomeScreenContent(
                 onViewAll = {
                     onEvent(
                         HomeScreenEvent.Navigate(
-                            HomeScreenDestination.ProductGroupsScreen(
-                                group = ProductGroup.BEST_DEALS
-                            )
+                            HomeScreenDestination.ProductGroupsScreen(ProductGroup.BEST_DEALS)
                         )
                     )
                 },
                 onProductSelected = { product ->
-                    onEvent(
-                        HomeScreenEvent.Navigate(
-                            HomeScreenDestination.ProductScreen(
-                                product = product
-                            )
-                        )
-                    )
+                    onEvent(HomeScreenEvent.Navigate(HomeScreenDestination.ProductScreen(product)))
                 }
             )
 
@@ -138,9 +118,7 @@ fun HomeScreenContent(
                 onCategorySelected = { category ->
                     onEvent(
                         HomeScreenEvent.Navigate(
-                            HomeScreenDestination.TrendingCategoryScreen(
-                                category = category
-                            )
+                            HomeScreenDestination.TrendingCategoryScreen(category)
                         )
                     )
                 }
@@ -159,20 +137,12 @@ fun HomeScreenContent(
                 onViewAll = {
                     onEvent(
                         HomeScreenEvent.Navigate(
-                            HomeScreenDestination.ProductGroupsScreen(
-                                group = ProductGroup.POPULAR
-                            )
+                            HomeScreenDestination.ProductGroupsScreen(ProductGroup.POPULAR)
                         )
                     )
                 },
                 onProductSelected = { product ->
-                    onEvent(
-                        HomeScreenEvent.Navigate(
-                            HomeScreenDestination.ProductScreen(
-                                product = product
-                            )
-                        )
-                    )
+                    onEvent(HomeScreenEvent.Navigate(HomeScreenDestination.ProductScreen(product)))
                 }
             )
 
@@ -189,20 +159,12 @@ fun HomeScreenContent(
                 onViewAll = {
                     onEvent(
                         HomeScreenEvent.Navigate(
-                            HomeScreenDestination.ProductGroupsScreen(
-                                group = ProductGroup.NEW_ARRIVALS
-                            )
+                            HomeScreenDestination.ProductGroupsScreen(ProductGroup.NEW_ARRIVALS)
                         )
                     )
                 },
                 onProductSelected = { product ->
-                    onEvent(
-                        HomeScreenEvent.Navigate(
-                            HomeScreenDestination.ProductScreen(
-                                product = product
-                            )
-                        )
-                    )
+                    onEvent(HomeScreenEvent.Navigate(HomeScreenDestination.ProductScreen(product)))
                 }
             )
         }

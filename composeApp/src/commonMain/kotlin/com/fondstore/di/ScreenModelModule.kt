@@ -3,6 +3,7 @@ package com.fondstore.di
 import com.fondstore.app.AppScreenModel
 import com.fondstore.category.categoriesScreen.CategoriesScreenModel
 import com.fondstore.category.categoryScreen.CategoryScreenModel
+import com.fondstore.category.trendingCategoryScreen.TrendingCategoryScreenModel
 import com.fondstore.contactUs.presentation.ContactUsScreenModel
 import com.fondstore.faqs.presentation.FaqsScreenModel
 import com.fondstore.helpCentre.HelpCentreScreenModel
@@ -36,10 +37,9 @@ val screenModelModule = module {
     factoryOf(::HomeScreenModel)
 
     factoryOf(::ProductGroupsScreenModel)
-    factory { holder ->
-        CategoriesScreenModel(categories = holder.get())
-    }
+    factory { CategoriesScreenModel(categories = it.get()) }
     factoryOf(::CategoryScreenModel)
+    factoryOf(::TrendingCategoryScreenModel)
 
     factoryOf(::ProfileScreenModel)
 

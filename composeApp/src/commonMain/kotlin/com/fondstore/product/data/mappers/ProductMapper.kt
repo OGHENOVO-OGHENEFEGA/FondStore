@@ -101,7 +101,7 @@ fun SectionItemsResponse.Error.toError(): SectionItemsError {
     return SectionItemsError(error = error.ifBlank { detail })
 }
 
-fun TrendingCategoryItemsResponse.Success.toCategory(): TrendingCategoryItems {
+fun TrendingCategoryItemsResponse.Success.toCategoryItems(): TrendingCategoryItems {
     return TrendingCategoryItems(
         count = count,
         next = next,
