@@ -1,6 +1,6 @@
 package com.fondstore.profile.presentation
 
-import com.fondstore.error.domain.models.Result
+import com.fondstore.error.Result
 import com.fondstore.profile.domain.errors.ProfileError
 import com.fondstore.profile.domain.models.Profile
 

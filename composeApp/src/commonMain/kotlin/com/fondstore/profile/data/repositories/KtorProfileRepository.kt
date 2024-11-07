@@ -1,11 +1,11 @@
 package com.fondstore.profile.data.repositories
 
-import com.fondstore.database.data.RealmDatabase
-import com.fondstore.error.domain.models.Result
-import com.fondstore.ktor.data.utils.authHeader
-import com.fondstore.ktor.data.utils.safeGet
-import com.fondstore.ktor.data.utils.safePost
-import com.fondstore.ktor.data.utils.safeSubmitForm
+import com.fondstore.database.RealmDatabase
+import com.fondstore.error.Result
+import com.fondstore.ktor.authHeader
+import com.fondstore.ktor.safeGet
+import com.fondstore.ktor.safePost
+import com.fondstore.ktor.safeSubmitForm
 import com.fondstore.profile.data.mappers.toError
 import com.fondstore.profile.data.mappers.toInfo
 import com.fondstore.profile.data.mappers.toProfile

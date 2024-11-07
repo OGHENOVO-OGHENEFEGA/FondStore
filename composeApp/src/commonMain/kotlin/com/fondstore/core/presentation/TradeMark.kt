@@ -17,8 +17,8 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.fondstore.resources.presentation.fontFamilyResource
-import com.fondstore.ui.presentation.appColors
+import com.fondstore.resources.fontFamilyResource
+import com.fondstore.ui.appColors
 import fondstore.composeapp.generated.resources.DMSans_ExtraBold
 import fondstore.composeapp.generated.resources.DMSans_Regular
 import fondstore.composeapp.generated.resources.Res

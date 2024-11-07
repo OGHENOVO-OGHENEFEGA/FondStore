@@ -23,7 +23,7 @@ import cafe.adriel.voyager.navigator.CurrentScreen
 import cafe.adriel.voyager.navigator.Navigator
 import com.fondstore.helpCentre.HelpCentreScreen
 import com.fondstore.profile.presentation.ProfileScreen
-import com.fondstore.resources.presentation.fontFamilyResource
+import com.fondstore.resources.fontFamilyResource
 import fondstore.composeapp.generated.resources.DMSans_Medium
 import fondstore.composeapp.generated.resources.Res
 import fondstore.composeapp.generated.resources.help_centre

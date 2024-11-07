@@ -1,6 +1,6 @@
 package com.fondstore.privacyPolicy.domain.repositories
 
-import com.fondstore.error.domain.models.Result
+import com.fondstore.error.Result
 import com.fondstore.privacyPolicy.domain.errors.PrivacyPolicyError
 import com.fondstore.privacyPolicy.domain.models.PrivacyPolicy
 

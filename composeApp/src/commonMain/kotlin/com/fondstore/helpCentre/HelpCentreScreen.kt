@@ -10,10 +10,10 @@ import com.fondstore.contactUs.presentation.ContactUsScreen
 import com.fondstore.faqs.presentation.FaqsScreen
 import com.fondstore.privacyPolicy.presentation.PrivacyPolicyScreen
 import com.fondstore.returnAndExchangePolicy.presentation.ReturnAndExchangePolicyScreen
-import com.fondstore.store.presentation.StoreScreen
+import com.fondstore.store.StoreScreen
 import com.fondstore.termsAndConditions.presentation.TermsAndConditionScreen
-import com.fondstore.voyager.presentation.NavigationKey
-import com.fondstore.voyager.presentation.push
+import com.fondstore.voyager.NavigationKey
+import com.fondstore.voyager.push
 
 class HelpCentreScreen : Screen {
 

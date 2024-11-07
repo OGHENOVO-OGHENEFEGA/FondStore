@@ -4,7 +4,7 @@ import cafe.adriel.voyager.core.model.StateScreenModel
 import cafe.adriel.voyager.core.model.screenModelScope
 import com.fondstore.contactUs.domain.errors.HelpCentreError
 import com.fondstore.contactUs.domain.repositories.ContactUsRepository
-import com.fondstore.error.domain.models.Result
+import com.fondstore.error.Result
 import com.fondstore.helpCentre.utils.HelpCentreManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO

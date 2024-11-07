@@ -11,8 +11,8 @@ import com.fondstore.contactUs.domain.repositories.ContactUsRepository
 import com.fondstore.contactUs.data.utils.ContactUsDataUtil
 import com.fondstore.contactUs.domain.errors.HelpCentreError
 import com.fondstore.contactUs.domain.errors.SocialError
-import com.fondstore.error.domain.models.Result
-import com.fondstore.ktor.data.utils.safeGet
+import com.fondstore.error.Result
+import com.fondstore.ktor.safeGet
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.http.isSuccess

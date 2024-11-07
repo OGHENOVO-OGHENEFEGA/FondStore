@@ -1,6 +1,6 @@
 package com.fondstore.returnAndExchangePolicy.presentation
 
-import com.fondstore.error.domain.models.Result
+import com.fondstore.error.Result
 import com.fondstore.returnAndExchangePolicy.domain.errors.ReturnAndExchangePolicyError
 import com.fondstore.returnAndExchangePolicy.domain.models.ReturnAndExchangePolicy
 

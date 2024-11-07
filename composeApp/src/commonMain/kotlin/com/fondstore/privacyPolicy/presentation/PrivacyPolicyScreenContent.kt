@@ -19,8 +19,8 @@ import androidx.compose.ui.unit.sp
 import com.fondstore.core.presentation.BackNavTopAppBar
 import com.fondstore.core.presentation.LoadingAnimationBox
 import com.fondstore.core.presentation.screenBackground
-import com.fondstore.resources.presentation.fontFamilyResource
-import com.fondstore.ui.presentation.appColors
+import com.fondstore.resources.fontFamilyResource
+import com.fondstore.ui.appColors
 import dev.materii.pullrefresh.PullRefreshLayout
 import dev.materii.pullrefresh.rememberPullRefreshState
 import fondstore.composeapp.generated.resources.DMSans_Medium

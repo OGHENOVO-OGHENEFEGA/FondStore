@@ -1,7 +1,7 @@
 package com.fondstore.returnAndExchangePolicy.data.repositories
 
-import com.fondstore.error.domain.models.Result
-import com.fondstore.ktor.data.utils.safeGet
+import com.fondstore.error.Result
+import com.fondstore.ktor.safeGet
 import com.fondstore.returnAndExchangePolicy.data.mappers.toError
 import com.fondstore.returnAndExchangePolicy.data.mappers.toPolicy
 import com.fondstore.returnAndExchangePolicy.data.remote.responses.ReturnAndExchangePolicyResponse

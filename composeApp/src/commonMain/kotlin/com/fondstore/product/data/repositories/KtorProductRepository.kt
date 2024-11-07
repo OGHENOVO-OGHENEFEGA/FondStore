@@ -1,7 +1,7 @@
 package com.fondstore.product.data.repositories
 
-import com.fondstore.error.domain.models.Result
-import com.fondstore.ktor.data.utils.safeGet
+import com.fondstore.error.Result
+import com.fondstore.ktor.safeGet
 import com.fondstore.product.data.mappers.toCategory
 import com.fondstore.product.data.mappers.toError
 import com.fondstore.product.data.mappers.toProduct

@@ -23,8 +23,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
-import com.fondstore.resources.presentation.fontFamilyResource
-import com.fondstore.ui.presentation.appColors
+import com.fondstore.resources.fontFamilyResource
+import com.fondstore.ui.appColors
 import fondstore.composeapp.generated.resources.DMSans_Bold
 import fondstore.composeapp.generated.resources.DMSans_SemiBold
 import fondstore.composeapp.generated.resources.Res

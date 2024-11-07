@@ -1,7 +1,6 @@
 package com.fondstore.helpCentre
 
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -27,8 +26,8 @@ import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.fondstore.core.presentation.defaultClickable
-import com.fondstore.resources.presentation.fontFamilyResource
-import com.fondstore.ui.presentation.appColors
+import com.fondstore.resources.fontFamilyResource
+import com.fondstore.ui.appColors
 import fondstore.composeapp.generated.resources.DMSans_Medium
 import fondstore.composeapp.generated.resources.DMSans_Regular
 import fondstore.composeapp.generated.resources.Res

@@ -1,6 +1,6 @@
 package com.fondstore.launcher.data.repositories
 
-import com.fondstore.database.data.RealmDatabase
+import com.fondstore.database.RealmDatabase
 import com.fondstore.launcher.domain.domain.LauncherState
 import com.fondstore.launcher.domain.repositories.LauncherRepository
 

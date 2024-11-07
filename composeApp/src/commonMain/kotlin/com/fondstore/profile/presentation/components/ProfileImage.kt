@@ -10,7 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.fondstore.core.presentation.defaultClickable
-import com.fondstore.ui.presentation.appColors
+import com.fondstore.ui.appColors
 import fondstore.composeapp.generated.resources.Res
 import fondstore.composeapp.generated.resources.profile_image
 import org.jetbrains.compose.resources.stringResource

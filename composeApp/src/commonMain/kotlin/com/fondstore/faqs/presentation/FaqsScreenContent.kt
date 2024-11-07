@@ -33,8 +33,8 @@ import com.fondstore.core.presentation.LoadingAnimationBox
 import com.fondstore.core.presentation.defaultClickable
 import com.fondstore.core.presentation.screenBackground
 import com.fondstore.faqs.domain.models.Faq
-import com.fondstore.resources.presentation.fontFamilyResource
-import com.fondstore.ui.presentation.appColors
+import com.fondstore.resources.fontFamilyResource
+import com.fondstore.ui.appColors
 import dev.materii.pullrefresh.PullRefreshLayout
 import dev.materii.pullrefresh.rememberPullRefreshState
 import fondstore.composeapp.generated.resources.DMSans_Medium
@@ -43,7 +43,6 @@ import fondstore.composeapp.generated.resources.Res
 import fondstore.composeapp.generated.resources.faqs
 import fondstore.composeapp.generated.resources.hide_question
 import fondstore.composeapp.generated.resources.no_faqs
-import fondstore.composeapp.generated.resources.notifications
 import fondstore.composeapp.generated.resources.show_question
 import org.jetbrains.compose.resources.stringResource
 

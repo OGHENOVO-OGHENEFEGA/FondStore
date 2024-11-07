@@ -1,6 +1,6 @@
 package com.fondstore.faqs.data.repositories
 
-import com.fondstore.error.domain.models.Result
+import com.fondstore.error.Result
 import com.fondstore.faqs.data.mappers.toError
 import com.fondstore.faqs.data.mappers.toFaq
 import com.fondstore.faqs.data.remote.responses.FaqResponse
@@ -8,7 +8,7 @@ import com.fondstore.faqs.domain.models.Faq
 import com.fondstore.faqs.domain.repositories.FaqsRepository
 import com.fondstore.faqs.data.utils.FaqsDataUtil
 import com.fondstore.faqs.domain.errors.FaqsError
-import com.fondstore.ktor.data.utils.safeGet
+import com.fondstore.ktor.safeGet
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.http.isSuccess

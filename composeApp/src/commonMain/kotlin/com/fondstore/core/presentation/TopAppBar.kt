@@ -16,7 +16,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.fondstore.ui.presentation.appColors
+import com.fondstore.ui.appColors
 import fondstore.composeapp.generated.resources.Res
 import fondstore.composeapp.generated.resources.navigate_back
 import org.jetbrains.compose.resources.stringResource

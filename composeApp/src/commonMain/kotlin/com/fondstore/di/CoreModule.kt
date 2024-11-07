@@ -1,6 +1,6 @@
 package com.fondstore.di
 
-import com.fondstore.database.data.RealmDatabase
+import com.fondstore.database.RealmDatabase
 import com.fondstore.onboarding.OnboardingScreenPage
 import fondstore.composeapp.generated.resources.Res
 import fondstore.composeapp.generated.resources.elevate_your_experience
@@ -13,7 +13,6 @@ import fondstore.composeapp.generated.resources.onboarding_image_3
 import fondstore.composeapp.generated.resources.refine_your_look
 import fondstore.composeapp.generated.resources.unleash_your_style
 import io.ktor.client.HttpClient
-import io.ktor.client.engine.HttpClientEngineFactory
 import io.ktor.client.plugins.HttpTimeout
 import io.ktor.client.plugins.HttpTimeoutConfig
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation

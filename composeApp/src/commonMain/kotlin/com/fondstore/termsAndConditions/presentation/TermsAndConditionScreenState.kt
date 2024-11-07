@@ -1,6 +1,6 @@
 package com.fondstore.termsAndConditions.presentation
 
-import com.fondstore.error.domain.models.Result
+import com.fondstore.error.Result
 import com.fondstore.termsAndConditions.domain.errors.TermsAndConditionError
 import com.fondstore.termsAndConditions.domain.models.TermsAndCondition
 

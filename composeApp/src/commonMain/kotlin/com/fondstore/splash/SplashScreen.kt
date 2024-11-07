@@ -6,7 +6,7 @@ import androidx.compose.runtime.getValue
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.koin.koinScreenModel
 import com.fondstore.onboarding.OnboardingScreen
-import com.fondstore.voyager.presentation.replace
+import com.fondstore.voyager.replace
 
 class SplashScreen : Screen {
 

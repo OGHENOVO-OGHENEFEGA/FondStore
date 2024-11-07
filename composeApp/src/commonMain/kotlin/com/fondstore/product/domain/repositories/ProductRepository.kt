@@ -1,6 +1,6 @@
 package com.fondstore.product.domain.repositories
 
-import com.fondstore.error.domain.models.Result
+import com.fondstore.error.Result
 import com.fondstore.product.domain.errors.CategoryError
 import com.fondstore.product.domain.errors.ProductError
 import com.fondstore.product.domain.errors.SectionError

@@ -22,7 +22,6 @@ import androidx.compose.material.icons.filled.Phone
 import androidx.compose.material.icons.outlined.Call
 import androidx.compose.material.icons.outlined.ContentCopy
 import androidx.compose.material.icons.outlined.PinDrop
-import androidx.compose.material.icons.outlined.Policy
 import androidx.compose.material.icons.outlined.SupportAgent
 import androidx.compose.material3.FilledIconButton
 import androidx.compose.material3.Icon
@@ -39,8 +38,8 @@ import androidx.compose.ui.unit.dp
 import com.fondstore.core.presentation.BackNavTopAppBar
 import com.fondstore.core.presentation.LoadingAnimationBox
 import com.fondstore.core.presentation.screenBackground
-import com.fondstore.error.domain.models.Result
-import com.fondstore.ui.presentation.appColors
+import com.fondstore.error.Result
+import com.fondstore.ui.appColors
 import compose.icons.AllIcons
 import compose.icons.FontAwesomeIcons
 import dev.materii.pullrefresh.PullRefreshLayout

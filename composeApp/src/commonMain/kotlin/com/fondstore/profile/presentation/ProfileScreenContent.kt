@@ -43,8 +43,8 @@ import com.fondstore.core.presentation.CircleLoadingAnimation
 import com.fondstore.core.presentation.LoadingText
 import com.fondstore.profile.presentation.components.ProfileImage
 import com.fondstore.profile.presentation.utils.ProfileScreenUtil
-import com.fondstore.resources.presentation.fontFamilyResource
-import com.fondstore.ui.presentation.appColors
+import com.fondstore.resources.fontFamilyResource
+import com.fondstore.ui.appColors
 import fondstore.composeapp.generated.resources.DMSans_Medium
 import fondstore.composeapp.generated.resources.DMSans_Regular
 import fondstore.composeapp.generated.resources.Res

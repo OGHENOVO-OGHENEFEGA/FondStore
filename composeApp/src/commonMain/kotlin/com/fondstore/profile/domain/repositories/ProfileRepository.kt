@@ -1,7 +1,7 @@
 package com.fondstore.profile.domain.repositories
 
 import kotlinx.coroutines.flow.Flow
-import com.fondstore.error.domain.models.Result
+import com.fondstore.error.Result
 import com.fondstore.profile.domain.errors.ProfileError
 import com.fondstore.profile.domain.errors.UserInfoError
 import com.fondstore.profile.domain.models.Profile

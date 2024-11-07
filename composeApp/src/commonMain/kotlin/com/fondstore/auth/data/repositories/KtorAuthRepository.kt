@@ -3,7 +3,7 @@ package com.fondstore.auth.data.repositories
 import com.fondstore.auth.domain.models.AuthTokens
 import com.fondstore.auth.domain.models.AuthTokensState
 import com.fondstore.auth.domain.repositories.AuthRepository
-import com.fondstore.database.data.RealmDatabase
+import com.fondstore.database.RealmDatabase
 import io.ktor.client.HttpClient
 import kotlinx.coroutines.flow.Flow
 

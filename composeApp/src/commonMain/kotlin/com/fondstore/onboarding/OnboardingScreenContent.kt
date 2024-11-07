@@ -13,14 +13,9 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowForwardIos
-import androidx.compose.material.icons.filled.LocalMall
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
-import androidx.compose.material3.CardColors
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -36,9 +31,9 @@ import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
 import com.fondstore.core.presentation.button
 import com.fondstore.core.presentation.screenHorizontalPadding
-import com.fondstore.image.presentation.DrawablePaths
-import com.fondstore.resources.presentation.fontFamilyResource
-import com.fondstore.ui.presentation.appColors
+import com.fondstore.image.DrawablePaths
+import com.fondstore.resources.fontFamilyResource
+import com.fondstore.ui.appColors
 import fondstore.composeapp.generated.resources.DMSans_Bold
 import fondstore.composeapp.generated.resources.DMSans_Medium
 import fondstore.composeapp.generated.resources.DMSans_Regular

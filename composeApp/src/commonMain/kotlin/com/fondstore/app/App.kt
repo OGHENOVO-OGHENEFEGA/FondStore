@@ -7,8 +7,8 @@ import androidx.compose.ui.platform.LocalFocusManager
 import cafe.adriel.voyager.navigator.CurrentScreen
 import cafe.adriel.voyager.navigator.Navigator
 import com.fondstore.core.presentation.defaultClickable
-import com.fondstore.image.presentation.WithCoilConfig
-import com.fondstore.ui.presentation.FondStoreTheme
+import com.fondstore.image.WithCoilConfig
+import com.fondstore.ui.FondStoreTheme
 import org.koin.compose.KoinContext
 
 @Composable
