@@ -16,8 +16,10 @@ import cafe.adriel.voyager.navigator.tab.CurrentTab
 import cafe.adriel.voyager.navigator.tab.TabNavigator
 import coil3.compose.AsyncImage
 import com.fondstore.account.AccountScreenTab
+import com.fondstore.cart.presentation.CartScreenTab
 import com.fondstore.core.presentation.TopAppBar
 import com.fondstore.core.presentation.screenBackground
+import com.fondstore.favourites.presentation.FavouritesScreenTab
 import com.fondstore.home.HomeScreenTab
 import com.fondstore.image.DrawablePaths
 import com.fondstore.ui.appColors
@@ -68,6 +70,8 @@ fun StoreScreenContent(onEvent: (StoreScreenEvent) -> Unit) {
             bottomBar = {
                 NavigationBar(containerColor = MaterialTheme.colorScheme.onPrimary) {
                     NavigationBarTabItem(HomeScreenTab)
+                    NavigationBarTabItem(FavouritesScreenTab)
+                    NavigationBarTabItem(CartScreenTab)
                     NavigationBarTabItem(AccountScreenTab)
                 }
             }

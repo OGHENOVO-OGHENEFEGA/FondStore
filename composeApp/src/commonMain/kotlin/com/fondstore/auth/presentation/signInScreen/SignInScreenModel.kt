@@ -2,7 +2,9 @@ package com.fondstore.auth.presentation.signInScreen
 
 import cafe.adriel.voyager.core.model.StateScreenModel
 import cafe.adriel.voyager.core.model.screenModelScope
+import com.fondstore.auth.domain.models.AuthTokens
 import com.fondstore.auth.domain.repositories.AuthRepository
+import com.fondstore.error.Result
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import kotlinx.coroutines.Job
@@ -48,7 +50,13 @@ class SignInScreenModel(private val repository: AuthRepository) :
                 }
             }
 
-            val result = repository.signIn(email = state.value.email, password = state.value.password)
+            val result =
+                repository.signIn(email = state.value.email, password = state.value.password)
+
+            if (result is Result.Success) {
+                val tokens = AuthTokens(access = result.data.access, refresh = result.data.refresh)
+                repository.insertLocalAuthTokens(tokens = tokens)
+            }
 
             withContext(Dispatchers.Main + NonCancellable) {
                 mutableState.update {

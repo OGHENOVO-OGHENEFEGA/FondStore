@@ -4,11 +4,13 @@ import com.fondstore.app.AppScreenModel
 import com.fondstore.auth.presentation.forgotPasswordScreen.ForgotPasswordScreenModel
 import com.fondstore.auth.presentation.signInScreen.SignInScreenModel
 import com.fondstore.auth.presentation.signUpScreen.SignUpScreenModel
+import com.fondstore.cart.presentation.CartScreenModel
 import com.fondstore.category.categoriesScreen.CategoriesScreenModel
 import com.fondstore.category.categoryScreen.CategoryScreenModel
 import com.fondstore.category.trendingCategoryScreen.TrendingCategoryScreenModel
 import com.fondstore.contactUs.presentation.ContactUsScreenModel
 import com.fondstore.faqs.presentation.FaqsScreenModel
+import com.fondstore.favourites.presentation.FavouritesScreenModel
 import com.fondstore.helpCentre.HelpCentreScreenModel
 import com.fondstore.home.HomeScreenModel
 import com.fondstore.launcher.presentation.LauncherScreenModel
@@ -38,6 +40,8 @@ val screenModelModule = module {
     factoryOf(::NotificationsScreenModel)
 
     factoryOf(::HomeScreenModel)
+    factoryOf(::FavouritesScreenModel)
+    factoryOf(::CartScreenModel)
 
     factoryOf(::ProductGroupsScreenModel)
     factory { CategoriesScreenModel(categories = it.get()) }

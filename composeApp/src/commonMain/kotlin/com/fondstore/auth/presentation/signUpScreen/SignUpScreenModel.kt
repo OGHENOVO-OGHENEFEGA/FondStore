@@ -71,7 +71,7 @@ class SignUpScreenModel(private val repository: AuthRepository) :
         }
     }
 
-    private fun navigate(destination: SignUpScreenDestination?) {
+    private fun navigate(destination: SignUpScreenDestination) {
         mutableState.update {
             it.copy(destination = destination)
         }

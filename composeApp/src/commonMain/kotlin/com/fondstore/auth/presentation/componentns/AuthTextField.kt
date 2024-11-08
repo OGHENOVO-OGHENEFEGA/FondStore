@@ -30,7 +30,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.fondstore.core.presentation.defaultClickable
+import com.fondstore.core.presentation.numbClickable
 import com.fondstore.resources.fontFamilyResource
 import com.fondstore.ui.appColors
 import fondstore.composeapp.generated.resources.DMSans_Medium
@@ -106,7 +106,7 @@ fun AuthTextField(
                 Icon(
                     imageVector = icon,
                     contentDescription = contentDescription,
-                    modifier = Modifier.size(24.dp).defaultClickable {
+                    modifier = Modifier.size(24.dp).numbClickable {
                         textFieldVisualTransformation =
                             if (textFieldVisualTransformation is PasswordVisualTransformation) {
                                 VisualTransformation.None

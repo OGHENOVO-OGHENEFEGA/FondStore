@@ -22,11 +22,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.fondstore.auth.presentation.componentns.AuthTextField
 import com.fondstore.core.presentation.LoadingButton
-import com.fondstore.core.presentation.SuccessDialog
 import com.fondstore.core.presentation.button
-import com.fondstore.core.presentation.defaultClickable
-import com.fondstore.core.presentation.screenBackground
+import com.fondstore.core.presentation.numbClickable
 import com.fondstore.core.presentation.screenPadding
+import com.fondstore.error.Result
 import com.fondstore.resources.fontFamilyResource
 import com.fondstore.ui.appColors
 import fondstore.composeapp.generated.resources.DMSans_Medium
@@ -37,143 +36,127 @@ import fondstore.composeapp.generated.resources.forgot_password
 import fondstore.composeapp.generated.resources.new_to_fondstore
 import fondstore.composeapp.generated.resources.password_hint
 import fondstore.composeapp.generated.resources.sign_in
-import fondstore.composeapp.generated.resources.sign_in_success_action
-import fondstore.composeapp.generated.resources.sign_in_success_message
-import fondstore.composeapp.generated.resources.sign_in_success_title
 import fondstore.composeapp.generated.resources.sign_up_for_free
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun SignInScreenContent(state: SignInScreenState, onEvent: (SignInScreenEvent) -> Unit) {
-    Box(modifier = Modifier.fillMaxSize().screenBackground()) {
-        Column(modifier = Modifier.fillMaxSize().screenPadding()) {
-            Text(
-                text = stringResource(Res.string.sign_in),
-                color = MaterialTheme.appColors.color100,
-                fontFamily = fontFamilyResource(Res.font.DMSans_Medium),
-                fontSize = 32.sp
-            )
+    if (state.result is Result.Success) {
+        onEvent(SignInScreenEvent.CloseScreen)
+    }
 
-            Spacer(modifier = Modifier.height(10.dp))
+    Column(modifier = Modifier.fillMaxSize().screenPadding()) {
+        Text(
+            text = stringResource(Res.string.sign_in),
+            color = MaterialTheme.appColors.color100,
+            fontFamily = fontFamilyResource(Res.font.DMSans_Medium),
+            fontSize = 32.sp
+        )
 
-            val newToFondstore = stringResource(Res.string.new_to_fondstore)
-            val signUpForFree = stringResource(Res.string.sign_up_for_free)
+        Spacer(modifier = Modifier.height(10.dp))
 
-            val annotatedString = buildAnnotatedString {
-                withStyle(
-                    style = SpanStyle(
-                        color = MaterialTheme.appColors.color50,
-                        fontFamily = fontFamilyResource(Res.font.DMSans_Medium),
-                        fontSize = 14.sp
-                    )
-                ) {
-                    append(newToFondstore)
-                }
+        val newToFondstore = stringResource(Res.string.new_to_fondstore)
+        val signUpForFree = stringResource(Res.string.sign_up_for_free)
 
-                append(" ")
-
-                withStyle(
-                    style = SpanStyle(
-                        color = MaterialTheme.colorScheme.primary,
-                        fontFamily = fontFamilyResource(Res.font.DMSans_Medium),
-                        fontSize = 14.sp
-                    )
-                ) {
-                    pushStringAnnotation(tag = signUpForFree, annotation = signUpForFree)
-                    append(signUpForFree)
-                }
-            }
-
-            ClickableText(
-                text = annotatedString,
-                onClick = { offset ->
-                    annotatedString.getStringAnnotations(offset, offset)
-                        .firstOrNull()?.let {
-                            onEvent(SignInScreenEvent.Navigate(SignInScreenDestination.SignUpScreen))
-                        }
-                }
-            )
-
-            Spacer(modifier = Modifier.height(40.dp))
-
-            AuthTextField(
-                value = state.email,
-                onValueChange = { email ->
-                    onEvent(SignInScreenEvent.SetEmail(email))
-                },
-                modifier = Modifier.fillMaxWidth(),
-                readOnly = state.isSigningIn,
-                placeholder = stringResource(Res.string.email_hint),
-                keyboardOptions = KeyboardOptions(
-                    keyboardType = KeyboardType.Email,
-                    imeAction = ImeAction.Next
-                ),
-                error = state.result?.errorOrNull?.email
-            )
-
-            Spacer(modifier = Modifier.height(30.dp))
-
-            AuthTextField(
-                value = state.password,
-                onValueChange = { password ->
-                    onEvent(SignInScreenEvent.SetPassword(password))
-                },
-                modifier = Modifier.fillMaxWidth(),
-                placeholder = stringResource(Res.string.password_hint),
-                readOnly = state.isSigningIn,
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
-                error = state.result?.errorOrNull?.password
-            )
-
-            Spacer(modifier = Modifier.height(15.dp))
-
-            Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.CenterEnd) {
-                Text(
-                    text = stringResource(Res.string.forgot_password),
+        val annotatedString = buildAnnotatedString {
+            withStyle(
+                style = SpanStyle(
                     color = MaterialTheme.appColors.color50,
-                    fontFamily = fontFamilyResource(Res.font.DMSans_Regular),
-                    fontSize = 16.sp,
-                    modifier = Modifier.defaultClickable {
-                        onEvent(SignInScreenEvent.Navigate(SignInScreenDestination.ForgotPasswordScreen))
-                    }
+                    fontFamily = fontFamilyResource(Res.font.DMSans_Medium),
+                    fontSize = 14.sp
                 )
+            ) {
+                append(newToFondstore)
             }
 
-            Spacer(modifier = Modifier.height(50.dp))
+            append(" ")
 
-            val canSignIn = state.email.isNotBlank()
-                    && state.password.isNotBlank()
-                    && !state.isSigningIn
-
-            LoadingButton(
-                onClick = {
-                    onEvent(SignInScreenEvent.SignIn)
-                },
-                isLoading = state.isSigningIn,
-                modifier = Modifier.button(),
-                enabled = canSignIn
-            ) {
-                Text(
-                    text = stringResource(Res.string.sign_in),
+            withStyle(
+                style = SpanStyle(
+                    color = MaterialTheme.colorScheme.primary,
                     fontFamily = fontFamilyResource(Res.font.DMSans_Medium),
-                    fontSize = 16.sp
+                    fontSize = 14.sp
                 )
+            ) {
+                pushStringAnnotation(tag = signUpForFree, annotation = signUpForFree)
+                append(signUpForFree)
             }
         }
 
-        val info = state.result?.dataOrNull
-
-        if (info != null) {
-            SuccessDialog(
-                title = stringResource(
-                    Res.string.sign_in_success_title,
-                    ""
-                ),
-                message = stringResource(Res.string.sign_in_success_message),
-                actionMessage = stringResource(Res.string.sign_in_success_action)
-            ) {
-                onEvent(SignInScreenEvent.CloseScreen)
+        ClickableText(
+            text = annotatedString,
+            onClick = { offset ->
+                annotatedString.getStringAnnotations(offset, offset)
+                    .firstOrNull()?.let {
+                        onEvent(SignInScreenEvent.Navigate(SignInScreenDestination.SignUpScreen))
+                    }
             }
+        )
+
+        Spacer(modifier = Modifier.height(40.dp))
+
+        AuthTextField(
+            value = state.email,
+            onValueChange = { email ->
+                onEvent(SignInScreenEvent.SetEmail(email))
+            },
+            modifier = Modifier.fillMaxWidth(),
+            readOnly = state.isSigningIn,
+            placeholder = stringResource(Res.string.email_hint),
+            keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Email,
+                imeAction = ImeAction.Next
+            ),
+            error = state.result?.errorOrNull?.email
+        )
+
+        Spacer(modifier = Modifier.height(30.dp))
+
+        AuthTextField(
+            value = state.password,
+            onValueChange = { password ->
+                onEvent(SignInScreenEvent.SetPassword(password))
+            },
+            modifier = Modifier.fillMaxWidth(),
+            placeholder = stringResource(Res.string.password_hint),
+            readOnly = state.isSigningIn,
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+            error = state.result?.errorOrNull?.password
+        )
+
+        Spacer(modifier = Modifier.height(15.dp))
+
+        Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.CenterEnd) {
+            Text(
+                text = stringResource(Res.string.forgot_password),
+                color = MaterialTheme.appColors.color50,
+                fontFamily = fontFamilyResource(Res.font.DMSans_Regular),
+                fontSize = 16.sp,
+                modifier = Modifier.numbClickable {
+                    onEvent(SignInScreenEvent.Navigate(SignInScreenDestination.ForgotPasswordScreen))
+                }
+            )
+        }
+
+        Spacer(modifier = Modifier.height(50.dp))
+
+        val canSignIn = state.email.isNotBlank()
+                && state.password.isNotBlank()
+                && !state.isSigningIn
+
+        LoadingButton(
+            onClick = {
+                onEvent(SignInScreenEvent.SignIn)
+            },
+            isLoading = state.isSigningIn,
+            modifier = Modifier.button(),
+            enabled = canSignIn
+        ) {
+            Text(
+                text = stringResource(Res.string.sign_in),
+                fontFamily = fontFamilyResource(Res.font.DMSans_Medium),
+                fontSize = 16.sp
+            )
         }
     }
 }

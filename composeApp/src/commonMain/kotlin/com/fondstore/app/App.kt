@@ -6,7 +6,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalFocusManager
 import cafe.adriel.voyager.navigator.CurrentScreen
 import cafe.adriel.voyager.navigator.Navigator
-import com.fondstore.core.presentation.defaultClickable
+import com.fondstore.core.presentation.numbClickable
 import com.fondstore.image.WithCoilConfig
 import com.fondstore.ui.FondStoreTheme
 import org.koin.compose.KoinContext
@@ -19,7 +19,7 @@ fun App() {
                 Navigator(AppScreen()) {
                     val focusManager = LocalFocusManager.current
 
-                    Box(modifier = Modifier.defaultClickable(onClick = focusManager::clearFocus)) {
+                    Box(modifier = Modifier.numbClickable(onClick = focusManager::clearFocus)) {
                         CurrentScreen()
                     }
                 }

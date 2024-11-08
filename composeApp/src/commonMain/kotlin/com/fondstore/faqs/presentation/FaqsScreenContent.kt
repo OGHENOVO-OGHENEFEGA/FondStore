@@ -30,7 +30,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.fondstore.core.presentation.BackNavTopAppBar
 import com.fondstore.core.presentation.LoadingAnimationBox
-import com.fondstore.core.presentation.defaultClickable
+import com.fondstore.core.presentation.numbClickable
 import com.fondstore.core.presentation.screenBackground
 import com.fondstore.faqs.domain.models.Faq
 import com.fondstore.resources.fontFamilyResource
@@ -133,7 +133,7 @@ private fun FaqBox(faq: Faq) {
                 imageVector = Icons.Filled.Close,
                 contentDescription = stringResource(contentDescriptionResource),
                 tint = MaterialTheme.appColors.color70,
-                modifier = Modifier.rotate(degrees).defaultClickable {
+                modifier = Modifier.rotate(degrees).numbClickable {
                     isAnswerVisible = !isAnswerVisible
                 }
             )

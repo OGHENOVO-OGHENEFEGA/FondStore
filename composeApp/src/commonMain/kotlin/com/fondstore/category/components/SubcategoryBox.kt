@@ -1,7 +1,6 @@
 package com.fondstore.category.components
 
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.height
@@ -27,7 +26,7 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.fondstore.core.presentation.CircleLoadingAnimation
-import com.fondstore.core.presentation.defaultClickable
+import com.fondstore.core.presentation.numbClickable
 import com.fondstore.product.domain.models.Subcategory
 import com.fondstore.resources.fontFamilyResource
 import com.fondstore.ui.appColors
@@ -49,7 +48,7 @@ fun SubcategoryBox(
     }
 
     Column(
-        modifier = modifier.defaultClickable(onClick = onClick).onSizeChanged {
+        modifier = modifier.numbClickable(onClick = onClick).onSizeChanged {
             with(density) {
                 columnWidth = it.width.toDp()
             }

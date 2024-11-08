@@ -9,7 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.fondstore.core.presentation.defaultClickable
+import com.fondstore.core.presentation.numbClickable
 import com.fondstore.ui.appColors
 import fondstore.composeapp.generated.resources.Res
 import fondstore.composeapp.generated.resources.profile_image
@@ -21,6 +21,6 @@ fun ProfileImage(size: Dp = 40.dp, enabled: Boolean = true, onClick: () -> Unit)
         imageVector = Icons.Filled.AccountCircle,
         contentDescription = stringResource(Res.string.profile_image),
         tint = MaterialTheme.appColors.color30,
-        modifier = Modifier.size(size).defaultClickable(onClick = onClick, enabled = enabled)
+        modifier = Modifier.size(size).numbClickable(onClick = onClick, enabled = enabled)
     )
 }

@@ -114,9 +114,7 @@ fun ProductsShelf(
                         ProductCard(
                             product = product,
                             modifier = Modifier.fillMaxSize(),
-                            isFavourite = favourites.map {
-                                it.id
-                            }.contains(product.id),
+                            isFavourite = favourites.map(Product::id).contains(product.id),
                             isFavouritesStateChanging =
                             favouritesRequestLoadingList.map(Product::id).contains(product.id),
                             onFavouriteCardClicked = {

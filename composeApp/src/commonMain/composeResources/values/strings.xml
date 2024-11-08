@@ -208,7 +208,7 @@
     <string name="new_to_fondstore">New to Fondstore?</string>
     <string name="sign_up_for_free">Sign Up for free</string>
 
-    <string name="sign_in_success_title">Welcome Back, %1$s</string>
+    <string name="sign_in_success_title">Welcome Back</string>
     <string name="sign_in_success_message">Your have successfully signed in to your account</string>
     <string name="sign_in_success_action">Done</string>
 

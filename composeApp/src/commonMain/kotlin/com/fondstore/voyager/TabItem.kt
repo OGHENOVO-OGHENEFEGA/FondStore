@@ -15,6 +15,8 @@ import cafe.adriel.voyager.navigator.tab.LocalTabNavigator
 import cafe.adriel.voyager.navigator.tab.Tab
 import coil3.compose.AsyncImage
 import com.fondstore.account.AccountScreenTab
+import com.fondstore.cart.presentation.CartScreenTab
+import com.fondstore.favourites.presentation.FavouritesScreenTab
 import com.fondstore.home.HomeScreenTab
 import com.fondstore.image.DrawablePaths
 import com.fondstore.ui.appColors
@@ -38,6 +40,8 @@ fun RowScope.NavigationBarTabItem(tab: Tab) {
         icon = {
             val path = when (tab) {
                 HomeScreenTab -> DrawablePaths.HOME
+                FavouritesScreenTab -> DrawablePaths.FAVOURITE
+                CartScreenTab -> DrawablePaths.CART
                 AccountScreenTab -> DrawablePaths.PROFILE
                 else -> ""
             }

@@ -59,7 +59,7 @@ fun BackNavTopAppBar(
                 Icon(
                     imageVector = Icons.AutoMirrored.Filled.ArrowBackIos,
                     contentDescription = stringResource(Res.string.navigate_back),
-                    modifier = Modifier.size(18.dp).defaultClickable(onClick = onNavigateBack),
+                    modifier = Modifier.size(18.dp).numbClickable(onClick = onNavigateBack),
                     tint = MaterialTheme.appColors.color100
                 )
 

@@ -38,7 +38,7 @@ fun Modifier.buttonHeight() = height(60.dp)
 fun Modifier.button() = fillMaxWidth().buttonHeight()
 
 @Composable
-fun Modifier.defaultClickable(enabled: Boolean = true, onClick: () -> Unit) = composed(
+fun Modifier.numbClickable(enabled: Boolean = true, onClick: () -> Unit) = composed(
     factory = {
         this.then(
             Modifier.clickable(

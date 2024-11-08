@@ -25,7 +25,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.fondstore.core.presentation.defaultClickable
+import com.fondstore.core.presentation.numbClickable
 import com.fondstore.resources.fontFamilyResource
 import com.fondstore.ui.appColors
 import fondstore.composeapp.generated.resources.DMSans_Medium
@@ -118,7 +118,7 @@ fun HelpCentreScreenContent(onEvent: (HelpCentreScreenEvent) -> Unit) {
 @Composable
 private fun HelpCentreOptionBox(name: String, onAction: () -> Unit) {
     Row(
-        modifier = Modifier.fillMaxWidth().defaultClickable(onClick = onAction),
+        modifier = Modifier.fillMaxWidth().numbClickable(onClick = onAction),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {

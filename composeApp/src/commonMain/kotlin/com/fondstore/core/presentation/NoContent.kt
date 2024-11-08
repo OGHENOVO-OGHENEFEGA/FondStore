@@ -1,5 +1,6 @@
 package com.fondstore.core.presentation
 
+import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -20,14 +21,15 @@ import fondstore.composeapp.generated.resources.DMSans_Regular
 import fondstore.composeapp.generated.resources.Res
 
 @Composable
-fun NoContent(
+fun BoxScope.NoContent(
     heading: String,
     message: String,
     actionMessage: String,
+    modifier: Modifier = Modifier.fillMaxWidth(0.75f).align(Alignment.Center),
     onAction: () -> Unit
 ) {
     Column(
-        modifier = Modifier.fillMaxWidth(0.75f),
+        modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
