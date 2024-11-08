@@ -7,14 +7,10 @@ import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.koin.koinScreenModel
 import com.fondstore.app.AppEvent
 import com.fondstore.app.AppScreenModel
-import com.fondstore.auth.presentation.authScreen.AuthScreen
-import com.fondstore.home.HomeScreenEvent
 import com.fondstore.product.domain.models.Category
 import com.fondstore.voyager.koinRootScreenModel
-import com.fondstore.voyager.push
 import kotlinx.serialization.json.Json
 import org.koin.core.parameter.parametersOf
-
 
 data class CategoryScreen(private val encodedCategory: String) : Screen {
 

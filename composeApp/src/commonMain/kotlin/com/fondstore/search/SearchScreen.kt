@@ -25,7 +25,6 @@ class SearchScreen : Screen {
 //
 //        if (destination != null) {
 //            val screen = when (destination) {
-//                SearchScreenDestination.AuthScreen -> AuthScreen()
 //                is SearchScreenDestination.ProductScreen -> TODO()
 //            }
 //

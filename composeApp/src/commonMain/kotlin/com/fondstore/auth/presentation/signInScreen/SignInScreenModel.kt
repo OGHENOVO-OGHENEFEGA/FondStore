@@ -1,9 +1,15 @@
 package com.fondstore.auth.presentation.signInScreen
 
 import cafe.adriel.voyager.core.model.StateScreenModel
+import cafe.adriel.voyager.core.model.screenModelScope
 import com.fondstore.auth.domain.repositories.AuthRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.IO
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class SignInScreenModel(private val repository: AuthRepository) :
     StateScreenModel<SignInScreenState>(SignInScreenState()) {
@@ -35,7 +41,21 @@ class SignInScreenModel(private val repository: AuthRepository) :
     }
 
     private fun signIn() {
+        screenModelScope.launch(Dispatchers.IO) {
+            withContext(Dispatchers.Main) {
+                mutableState.update {
+                    it.copy(isSigningIn = true)
+                }
+            }
 
+            val result = repository.signIn(email = state.value.email, password = state.value.password)
+
+            withContext(Dispatchers.Main + NonCancellable) {
+                mutableState.update {
+                    it.copy(isSigningIn = false, result = result)
+                }
+            }
+        }
     }
 
     private fun cancelSignInJob() {
